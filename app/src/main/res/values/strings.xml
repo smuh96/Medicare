@@ -8,12 +8,14 @@
     <string name="EXCELLENCE">At Medicare, only the best will do. We work as a team to bring experience, advanced technology and best practices to provide the highest-quality care for our patients and families. We devote ourselves to continuous improvement, excellence, professionalism and innovation in our work.</string>
     <string name="INTEGRITY">Our actions tell the world what Medicare is and what we stand for. We act ethically and responsibly in everything we do and hold ourselves accountable for our behavior. We bring respect, openness and honesty to our encounters with patients, families and co-workers and support the well-being of the communities we serve.</string>
     <string-array name="speciality_arrays">
+        <item>Select any Speciality</item>
         <item>Anesthesia</item>
         <item>Cardiac Surgery &amp; Cardiology</item>
         <item>Chest Clinic</item>
         <item>Dental Surgery</item>
     </string-array>
     <string-array name="doctor_arrays">
+        <item>Select a Doctor</item>
         <item>Dr. Jameel Ahmed Buyney</item>
         <item>Dr. Saajan Kukreja</item>
         <item>Dr. Amer Hussain</item>
