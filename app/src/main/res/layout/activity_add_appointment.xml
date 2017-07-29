@@ -15,24 +15,25 @@
         android:layout_height="200dp"
         android:scaleType="centerCrop"
         android:src="@drawable/appointment_banner"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="10dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingBottom="2dp"
-            android:weightSum="3">
+            android:weightSum="5">
         <TextView
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:text="Full Name"
-            android:textSize="20sp"/>
+            android:textColor="#000"
+            android:textSize="15sp"/>
             <EditText
                 android:textSize="13sp"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="2"
+                android:layout_weight="4"
                 android:background="@drawable/border"
                 android:hint="Enter your Full Name"/>
         </LinearLayout>
@@ -41,18 +42,19 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingBottom="2dp"
-            android:weightSum="3">
+            android:weightSum="5">
         <TextView
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:text="MR # "
-            android:textSize="20sp"/>
+            android:textColor="#000"
+            android:textSize="15sp"/>
             <EditText
                 android:textSize="13sp"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="2"
+                android:layout_weight="4"
                 android:background="@drawable/border"
                 android:hint="Enter your MR #"/>
         </LinearLayout>
@@ -61,13 +63,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingBottom="2dp"
-            android:weightSum="3">
+            android:weightSum="5">
         <TextView
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:text="Age "
-            android:textSize="20sp"/>
+            android:textColor="#000"
+            android:textSize="15sp"/>
             <EditText
                 android:textSize="13sp"
                 android:layout_width="0dp"
@@ -81,25 +84,28 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:text="    Years "
-                android:textSize="20sp"/>
+                android:textColor="#000"
+                android:textSize="15sp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingBottom="2dp"
-            android:weightSum="3">
+            android:weightSum="5">
         <TextView
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:text="Contact # "
-            android:textSize="20sp"/>
+            android:textColor="#000"
+            android:textSize="15sp"/>
             <EditText
                 android:textSize="13sp"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="2"
+                android:layout_weight="4"
+                android:inputType="number"
                 android:background="@drawable/border"
                 android:hint="Enter your Contact Number"/>
         </LinearLayout>
@@ -108,17 +114,18 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingBottom="2dp"
-            android:weightSum="3">
+            android:weightSum="5">
         <TextView
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:text="Speciality"
-            android:textSize="20sp"/>
+            android:textColor="#000"
+            android:textSize="15sp"/>
             <Spinner
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="2"
+                android:layout_weight="4"
                 android:background="@drawable/border"
                 android:entries="@array/speciality_arrays"/>
         </LinearLayout>
@@ -127,17 +134,18 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingBottom="2dp"
-            android:weightSum="3">
+            android:weightSum="5">
         <TextView
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:text="Doctor "
-            android:textSize="20sp"/>
+            android:textColor="#000"
+            android:textSize="15sp"/>
             <Spinner
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="2"
+                android:layout_weight="4"
                 android:background="@drawable/border"
                 android:entries="@array/doctor_arrays"/>
         </LinearLayout>
@@ -145,18 +153,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="3">
+            android:weightSum="5">
         <TextView
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:text="Brief History"
-            android:textSize="20sp"/>
+            android:textColor="#000"
+            android:textSize="15sp"/>
             <EditText
                 android:textSize="13sp"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
-                android:layout_weight="2"
+                android:layout_weight="4"
                 android:background="@drawable/border"
                 android:hint="Write Brief History"/>
         </LinearLayout>
@@ -177,16 +186,22 @@
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:text="1st Choice"
-                    android:textSize="20sp"/>
+                    android:gravity="center_vertical"
+                    android:textColor="#000"
+                    android:textSize="12sp"/>
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="4"
                     android:orientation="vertical">
                     <EditText
                         android:textSize="13sp"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
+                        android:id="@+id/datechoice1"
+                        android:hint="Select date"
+                        android:clickable="true"
+                        android:focusable="false"
                         android:background="@drawable/border"/>
                 <RadioGroup
                     android:layout_width="wrap_content"
@@ -219,16 +234,22 @@
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:text="2nd Choice"
-                    android:textSize="20sp"/>
+                    android:gravity="center_vertical"
+                    android:textColor="#000"
+                    android:textSize="12sp"/>
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="4"
                     android:orientation="vertical">
                     <EditText
                         android:textSize="13sp"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
+                        android:hint="Select date"
+                        android:clickable="true"
+                        android:id="@+id/datechoice2"
+                        android:focusable="false"
                         android:background="@drawable/border"/>
                 <RadioGroup
                     android:layout_width="wrap_content"
@@ -255,8 +276,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit"
+            android:layout_marginTop="20dp"
             android:background="@color/colorPrimaryDark"
             android:textColor="#fff"
+            android:id="@+id/AppointmentSubmitBtn"
             android:layout_gravity="center"/>
         </LinearLayout>
 </ScrollView>

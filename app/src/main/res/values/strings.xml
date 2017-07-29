@@ -20,4 +20,5 @@
         <item>Dr. Saajan Kukreja</item>
         <item>Dr. Amer Hussain</item>
     </string-array>
+    <string name="title_activity_contact_us">Map</string>
 </resources>

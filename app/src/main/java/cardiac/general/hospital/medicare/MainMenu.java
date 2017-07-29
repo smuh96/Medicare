@@ -33,7 +33,7 @@ public class MainMenu extends AppCompatActivity {
         startActivity(i);
     }
     public void Contact_Click(View view){
-        Intent i = new Intent(MainMenu.this,Contact.class);
+        Intent i = new Intent(MainMenu.this,Contact_us.class);
         startActivity(i);
     }
 }
