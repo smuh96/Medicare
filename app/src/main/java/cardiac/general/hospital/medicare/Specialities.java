@@ -1,6 +1,7 @@
 package cardiac.general.hospital.medicare;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -118,7 +119,10 @@ public class Specialities extends AppCompatActivity {
                 try {
                     JSONObject jsonChildNode = jsonMainNode.getJSONObject(position);
                     String number = jsonChildNode.optString("Id");
-                    Toast.makeText(Specialities.this, "ID : "+number, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Specialities.this, "ID : "+number, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Specialities.this, SpecialityDetails.class);
+                    intent.putExtra("ID", number);
+                    startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
