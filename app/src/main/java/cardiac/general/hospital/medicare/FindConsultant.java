@@ -23,23 +23,20 @@ public class FindConsultant extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_consultant);
         initList();
-        ListView listView = (ListView) findViewById(R.id.listView1);
+        ListView listView = (ListView) findViewById(R.id.listView2);
         SimpleAdapter simpleAdapter = new SimpleAdapter(this, specilitiesList, android.R.layout.simple_list_item_1, new String[] {"specilities"}, new int[] {android.R.id.text1});
         listView.setAdapter(simpleAdapter);
     }
-
     List<Map<String,String>> specilitiesList = new ArrayList<Map<String,String>>();
     private void initList(){
-
         try{
             JSONObject jsonResponse = new JSONObject(localjsonString);
             JSONArray jsonMainNode = jsonResponse.optJSONArray("specilities");
-
             for(int i = 0; i<jsonMainNode.length();i++){
                 JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
-                String name = jsonChildNode.optString("Id");
-                String number = jsonChildNode.optString("Name");
-                String outPut = name + ": " +number;
+                //String number = jsonChildNode.optString("Id");
+                String name = jsonChildNode.optString("Name");
+                String outPut = i+1 + ": " +name;
                 specilitiesList.add(createEmployee("specilities", outPut));
             }
         }
@@ -47,11 +44,9 @@ public class FindConsultant extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Error"+e.toString(), Toast.LENGTH_SHORT).show();
         }
     }
-
     private HashMap<String, String>createEmployee(String name,String number){
         HashMap<String, String> employeeNameNo = new HashMap<String, String>();
         employeeNameNo.put(name, number);
         return employeeNameNo;
     }
-
 }

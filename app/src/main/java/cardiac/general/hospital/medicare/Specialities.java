@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -28,62 +29,58 @@ import java.util.Map;
 
 public class Specialities extends AppCompatActivity {
 
+    String TAG = "Response";
+    Object resultString;
     boolean haveConnectedWifi = false;
     boolean haveConnectedMobile = false;
     String network;
-
-    String TAG = "Response";
-    Object resultString;
-    String json;
+    TextView noInternet;
+    ListView listView;
+    JSONObject jsonResponse;
+    JSONArray jsonMainNode;
+    String outPut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specialities);
 
-        TextView noInternet= (TextView) findViewById(R.id.no_internet);
-        ListView listView = (ListView) findViewById(R.id.listView2);
+        noInternet= (TextView) findViewById(R.id.no_internet);
+        listView= (ListView) findViewById(R.id.listView1);
         network= String.valueOf(haveNetworkConnection());
-        if (network.equals("true")){
+        if (network.equals("true")) {
             noInternet.setVisibility(View.GONE);
             AsyncCallWS task = new AsyncCallWS();
             task.execute();
-            SimpleAdapter simpleAdapter = new SimpleAdapter(this, specilitiesList, android.R.layout.simple_list_item_1, new String[] {"specilities"}, new int[] {android.R.id.text1});
-            listView.setAdapter(simpleAdapter);
-        }else{
+        }
+        else{
             listView.setVisibility(View.GONE);
         }
-        Log.i(TAG, "Internet"+network);
     }
     private class AsyncCallWS extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() { Log.i(TAG, "onPreExecute"); }
 
         @Override
-        protected void onPreExecute() {
-            Log.i(TAG, "onPreExecute");
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            Log.i(TAG, "doInBackground");
+        protected Void doInBackground(Void... params) { Log.i(TAG, "doInBackground");
             GetJSON();
             return null;
         }
-
         @Override
         protected void onPostExecute(Void result) {
             Log.i(TAG, "onPostExecute");
-            Toast.makeText(Specialities.this, ""+json, Toast.LENGTH_LONG).show();
+            //Toast.makeText(MainActivity.this, "" + outPut, Toast.LENGTH_LONG).show();
+            SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), specialitiesList, android.R.layout.simple_list_item_1, new String[] {"specialitiess"}, new int[] {android.R.id.text1});
+            listView.setAdapter(simpleAdapter);
+            ListViewClick();
         }
     }
-
-    List<Map<String,String>> specilitiesList = new ArrayList<Map<String,String>>();
+    List<Map<String,String>> specialitiesList = new ArrayList<Map<String,String>>();
     public void GetJSON() {
-
         String METHOD_NAME = "Get_Speciality";
         String NAMESPACE = "http://medicarehospital.pk//";
         String URL = "http://medicarehospital.pk/WebService.asmx";
         String SOAP_ACTION = NAMESPACE+METHOD_NAME;
-
         try {
             SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
             SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
@@ -94,35 +91,41 @@ public class Specialities extends AppCompatActivity {
 
             transport.call(SOAP_ACTION, soapEnvelope);
             resultString= soapEnvelope.getResponse();
-            json=  "{\"specilities\":"+resultString.toString()+"}";
-            Log.i(TAG, "JsonString: " + json);
-            try{
-                JSONObject jsonResponse = new JSONObject(json);
-                JSONArray jsonMainNode = jsonResponse.optJSONArray("specilities");
-                Log.i(TAG, "ObjectandArray: " + jsonResponse+" **** "+jsonMainNode);
-                for(int i = 0; i<jsonMainNode.length();i++){
-                    JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
-                    String name = jsonChildNode.optString("Id");
-                    String number = jsonChildNode.optString("Name");
-                    String outPut = name + ": " +number;
-                    Log.i(TAG, "result: " + outPut);
-                    specilitiesList.add(createEmployee("specilities", outPut));
-                }
-            }
-            catch(JSONException e){
-                Toast.makeText(getApplicationContext(), "Error"+e.toString(), Toast.LENGTH_SHORT).show();
+            String jsonString="{\"specialities\":"+resultString.toString()+"}";
+            jsonResponse = new JSONObject(jsonString);
+            jsonMainNode = jsonResponse.optJSONArray("specialities");
+            Log.i(TAG, "Result: " + jsonMainNode);
+            for(int i = 0; i<jsonMainNode.length();i++){
+                JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
+                //String number = jsonChildNode.optString("Id");
+                String name = jsonChildNode.optString("Name");
+                String outPut = i+1 + ": " +name;
+                specialitiesList.add(createspecialities("specialitiess", outPut));
             }
         } catch (Exception ex) {
             Log.e(TAG, "Error: " + ex.getMessage());
         }
     }
-    private HashMap<String, String> createEmployee(String name, String number){
-        HashMap<String, String> employeeNameNo = new HashMap<String, String>();
-        employeeNameNo.put(name, number);
-        return employeeNameNo;
+    private HashMap<String, String> createspecialities(String name, String number){
+        HashMap<String, String> specialitiesNameNo = new HashMap<String, String>();
+        specialitiesNameNo.put(name, number);
+        return specialitiesNameNo;
+    }
+    public void ListViewClick() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    JSONObject jsonChildNode = jsonMainNode.getJSONObject(position);
+                    String number = jsonChildNode.optString("Id");
+                    Toast.makeText(Specialities.this, "ID : "+number, Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
     private boolean haveNetworkConnection() {
-
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo[] netInfo = cm.getAllNetworkInfo();
         for (NetworkInfo ni : netInfo) {
