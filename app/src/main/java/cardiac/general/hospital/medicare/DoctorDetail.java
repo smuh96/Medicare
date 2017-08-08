@@ -8,7 +8,9 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -25,16 +27,29 @@ import java.net.URL;
 public class DoctorDetail extends AppCompatActivity {
     String TAG = "Response";
     Object resultString;
-    ImageView cover;
+    ImageView DoctorPicture;
     JSONObject jsonResponse;
     JSONArray jsonMainNode;
-    String url;
-    String id;
+    String url,id;
+    String Name,Degree,Speciality,Clinicdays1,Timing1,Clinicdays2,Timing2,AppointmentContact,Introduction,PictureAddress,TreatId,TreatName;
+    TextView DoctorName,DoctorSpeciality,DoctorDegree,DoctorDays1,DoctorTime1,DoctorDays2,DoctorTime2,DoctorContact,DoctorIntro;
+    Button AppointmentBtn;
     ProgressDialog pd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_detail);
+
+        DoctorName= (TextView) findViewById(R.id.doctorname);
+        DoctorSpeciality= (TextView) findViewById(R.id.doctorpeciality);
+        DoctorDegree= (TextView) findViewById(R.id.doctordegree);
+        DoctorDays1= (TextView) findViewById(R.id.doctordays1);
+        DoctorTime1= (TextView) findViewById(R.id.doctortime1);
+        DoctorDays2= (TextView) findViewById(R.id.doctordays2);
+        DoctorTime2= (TextView) findViewById(R.id.doctortime2);
+        DoctorContact= (TextView) findViewById(R.id.doctorcontact);
+        DoctorIntro= (TextView) findViewById(R.id.doctorintro);
+        AppointmentBtn= (Button) findViewById(R.id.doctorAppointmentBtn);
         pd = new ProgressDialog(DoctorDetail.this);
         pd.setMessage("loading");
         pd.show();
@@ -42,13 +57,12 @@ public class DoctorDetail extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         id = bundle.getString("DocId");
         AsyncCallDoctorDetail task = new AsyncCallDoctorDetail();
-        task.execute();
+        task.execute();ImageLoadTask task2 = new ImageLoadTask(url, DoctorPicture);
+        task2.execute();
     }
-
     private class AsyncCallDoctorDetail extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() { Log.i(TAG, "onPreExecute"); }
-
         @Override
         protected Void doInBackground(Void... params) { Log.i(TAG, "doInBackground");
             GetJSON();
@@ -60,13 +74,13 @@ public class DoctorDetail extends AppCompatActivity {
             Log.i(TAG, "onPostExecute");
             pd.dismiss();
             Toast.makeText(DoctorDetail.this, "" + jsonMainNode, Toast.LENGTH_LONG).show();
-
+            Log.d(TAG, "OutPut : " +jsonMainNode);
         }
     }
     private class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
         ImageLoadTask(String src, ImageView imageView) {
             url = src;
-            cover = imageView;
+            DoctorPicture = imageView;
         }
 
         @Override
@@ -88,7 +102,7 @@ public class DoctorDetail extends AppCompatActivity {
         @Override
         protected void onPostExecute(Bitmap result) {
             super.onPostExecute(result);
-            cover.setImageBitmap(result);
+            DoctorPicture.setImageBitmap(result);
         }
     }
     public void GetJSON() {
@@ -109,12 +123,30 @@ public class DoctorDetail extends AppCompatActivity {
             String jsonString="{\"specialities\":"+resultString.toString()+"}";
             jsonResponse = new JSONObject(jsonString);
             jsonMainNode = jsonResponse.optJSONArray("specialities");
-            Log.i(TAG, "ABCD: " + jsonMainNode);/*
             JSONObject jsonChildNode = jsonMainNode.getJSONObject(0);
-            String pic = jsonChildNode.optString("Picture");
-            url = pic.replaceAll("~", "http://medicarehospital.pk/");
+            Name = jsonChildNode.optString("Name");
+            Degree = jsonChildNode.optString("Degree");
+            Speciality = jsonChildNode.optString("Speciality");
+            Clinicdays1 = jsonChildNode.optString("Clinicdays1");
+            Timing1 = jsonChildNode.optString("Timing1");
+            Clinicdays2 = jsonChildNode.optString("Clinicdays2");
+            Timing2 = jsonChildNode.optString("Timing2");
+            AppointmentContact = jsonChildNode.optString("AppointmentContact");
+            Introduction = jsonChildNode.optString("Introduction");
+            PictureAddress = jsonChildNode.optString("PictureAddress");
+            url = PictureAddress.replaceAll("~", "http://medicarehospital.pk/");
+            TreatId = jsonChildNode.optString("TreatId");
+            TreatName = jsonChildNode.optString("TreatName");
+            DoctorName.setText(Name);
+            DoctorSpeciality.setText(Speciality);
+            DoctorDegree.setText(Degree);
+            DoctorDays1.setText(Clinicdays1);
+            DoctorTime1.setText(Timing1);
+            DoctorDays2.setText(Clinicdays2);
+            DoctorTime2.setText(Timing2);
+            DoctorContact.setText(AppointmentContact);
+            DoctorIntro.setText(Introduction);
             Log.d(TAG, "URL: " + url);
-            name = jsonChildNode.optString("Name");*/
         } catch (Exception ex) {
             Log.e(TAG, "Error: " + ex.getMessage());
         }

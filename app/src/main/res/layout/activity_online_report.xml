@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
     tools:context="cardiac.general.hospital.medicare.OnlineReport">
-
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/about_banner"
+        android:layout_marginBottom="5dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:text="See Medical Report"
+        android:textColor="@color/colorAccent"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:background="@drawable/border"
+        android:hint="Enter MR Number"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Get Report"
+        android:layout_marginTop="10dp"
+        android:textColor="#fff"
+        android:id="@+id/getReportBtn"
+        android:background="@color/colorPrimaryDark"/>
+</LinearLayout>
