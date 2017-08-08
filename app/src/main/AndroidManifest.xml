@@ -61,8 +61,14 @@
         <activity
             android:name=".Contact_us"
             android:label="Contact us" />
-        <activity android:name=".SpecialityDetails"
-            android:label="Speciality Details"/>
+        <activity
+            android:name=".SpecialityDetails"
+            android:label="Speciality Details" />
+        <activity
+            android:name=".ConsultantDetails"
+            android:label="Consultant Details" />
+        <activity android:name=".DoctorDetail"
+            android:label="Doctor Details"/>
     </application>
 
 </manifest>

@@ -54,13 +54,13 @@ public class Specialities extends AppCompatActivity {
         network= String.valueOf(haveNetworkConnection());
         if (network.equals("true")) {
             noInternet.setVisibility(View.GONE);
-            AsyncCallWS task = new AsyncCallWS();
+            AsyncCallSpecialities task = new AsyncCallSpecialities();
             task.execute();
         }else{
             listView.setVisibility(View.GONE);
         }
     }
-    private class AsyncCallWS extends AsyncTask<Void, Void, Void> {
+    private class AsyncCallSpecialities extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() { Log.i(TAG, "onPreExecute"); }
 

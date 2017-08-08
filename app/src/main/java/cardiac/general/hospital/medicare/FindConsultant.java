@@ -72,7 +72,7 @@ public class FindConsultant extends AppCompatActivity {
             //Toast.makeText(MainActivity.this, "" + outPut, Toast.LENGTH_LONG).show();
             SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), FindAConsultantList, android.R.layout.simple_list_item_1, new String[] {"FindAConsultants"}, new int[] {android.R.id.text1});
             listView.setAdapter(simpleAdapter);
-            //ListViewClick();
+            ListViewClick();
         }
     }
     List<Map<String,String>> FindAConsultantList = new ArrayList<Map<String,String>>();
@@ -119,7 +119,7 @@ public class FindConsultant extends AppCompatActivity {
                     JSONObject jsonChildNode = jsonMainNode.getJSONObject(position);
                     String number = jsonChildNode.optString("Id");
                     //Toast.makeText(Specialities.this, "ID : "+number, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(FindConsultant.this, SpecialityDetails.class);
+                    Intent intent = new Intent(FindConsultant.this, ConsultantDetails.class);
                     intent.putExtra("ID", number);
                     startActivity(intent);
                 } catch (JSONException e) {
