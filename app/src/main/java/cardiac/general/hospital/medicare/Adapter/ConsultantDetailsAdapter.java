@@ -45,8 +45,8 @@ public class ConsultantDetailsAdapter extends ArrayAdapter<String> {
         DocName.setText(DocNameArray[position]);
         //DocDept.setText(DocDeptArray[position]);
         DocSpeciality.setText(DocSpecialityArray[position]);
-        DocDays1.setText(DocDays1Array[position]+", "+DocTiming1Array[position]);
-        DocDays2.setText(DocDays2Array[position]+", "+DocTiming2Array[position]);
+        DocDays1.setText(DocDays1Array[position]+" "+DocTiming1Array[position]);
+        DocDays2.setText(DocDays2Array[position]+" "+DocTiming2Array[position]);
         return row;
     }
 }

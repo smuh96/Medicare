@@ -87,6 +87,7 @@ public class DoctorDetail extends AppCompatActivity {
             pd.dismiss();
             //Toast.makeText(DoctorDetail.this, "" + jsonMainNode, Toast.LENGTH_LONG).show();
             Log.d(TAG, "OutPut : " +jsonMainNode);
+            AppointmentBtnClick();
         }
     }
     private class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
@@ -154,5 +155,15 @@ public class DoctorDetail extends AppCompatActivity {
         } catch (Exception ex) {
             Log.e(TAG, "Error: " + ex.getMessage());
         }
+    }
+    public void AppointmentBtnClick() {
+        AppointmentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DoctorDetail.this, AddAppointment.class);
+                intent.putExtra("ID", TreatId);
+                startActivity(intent);
+            }
+        });
     }
 }

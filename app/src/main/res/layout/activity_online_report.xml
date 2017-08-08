@@ -5,12 +5,13 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     android:orientation="vertical"
+    android:background="#fff"
     tools:context="cardiac.general.hospital.medicare.OnlineReport">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/about_banner"
+        android:src="@drawable/online_report"
         android:layout_marginBottom="5dp"/>
     <TextView
         android:layout_width="match_parent"
@@ -27,7 +28,14 @@
         android:layout_marginTop="10dp"
         android:textAlignment="center"
         android:background="@drawable/border"
-        android:hint="Enter MR Number"/>
+        android:hint="Enter Transaction No."/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:background="@drawable/border"
+        android:hint="Enter Pin No."/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"

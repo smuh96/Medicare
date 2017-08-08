@@ -98,9 +98,10 @@ public class FindConsultant extends AppCompatActivity {
             for(int i = 0; i<jsonMainNode.length();i++){
                 JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
                 //String number = jsonChildNode.optString("Id");
-                String name = jsonChildNode.optString("Name");
-                FindAConsultantList.add(createFindAConsultant("FindAConsultants", name));
+                outPut = jsonChildNode.optString("Name");
+                FindAConsultantList.add(createFindAConsultant("FindAConsultants", outPut));
             }
+            Log.d(TAG, "OutPut: " + outPut);
         } catch (Exception ex) {
             Log.e(TAG, "Error: " + ex.getMessage());
         }

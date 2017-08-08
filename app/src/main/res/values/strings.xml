@@ -9,10 +9,30 @@
     <string name="INTEGRITY">Our actions tell the world what Medicare is and what we stand for. We act ethically and responsibly in everything we do and hold ourselves accountable for our behavior. We bring respect, openness and honesty to our encounters with patients, families and co-workers and support the well-being of the communities we serve.</string>
     <string-array name="speciality_arrays">
         <item>Select any Speciality</item>
-        <item>Anesthesia</item>
-        <item>Cardiac Surgery &amp; Cardiology</item>
-        <item>Chest Clinic</item>
+        <item>Cardiology And Cardiothoracic Surgery</item>
+        <item>Clinical Nutrition And Dietetics</item>
         <item>Dental Surgery</item>
+        <item>Dermatology And Cosmetology</item>
+        <item>Dialysis</item>
+        <item>E.N.T</item>
+        <item>Endocrinology</item>
+        <item>Eye</item>
+        <item>Gastroenterology</item>
+        <item>General Surgery</item>
+        <item>Maxillo Facial</item>
+        <item>Medicine</item>
+        <item>Nephrology</item>
+        <item>Neurology</item>
+        <item>Neurosurgery</item>
+        <item>Obstetrics and Gynaecology</item>
+        <item>Oncology</item>
+        <item>Orthopedics</item>
+        <item>Pediatrics And Neonatology</item>
+        <item>Plastic And Reconstructive Surgery</item>
+        <item>Psychiatry</item>
+        <item>Pulmonology</item>
+        <item>Rheumatology</item>
+        <item>Urology</item>
     </string-array>
     <string-array name="doctor_arrays">
         <item>Select a Doctor</item>
