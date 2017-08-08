@@ -41,16 +41,12 @@ public class ConsultantDetailsAdapter extends ArrayAdapter<String> {
         TextView DocDept= (TextView) row.findViewById(R.id.docdptText);
         TextView DocSpeciality= (TextView) row.findViewById(R.id.docspecText);
         TextView DocDays1= (TextView) row.findViewById(R.id.docday1Text);
-        TextView DocTime1= (TextView) row.findViewById(R.id.doctime1Text);
         TextView DocDays2= (TextView) row.findViewById(R.id.docday2Text);
-        TextView DocTime2= (TextView) row.findViewById(R.id.doctime2Text);
         DocName.setText(DocNameArray[position]);
-        DocDept.setText("Department "+DocDeptArray[position]);
-        DocSpeciality.setText("Speciality "+DocSpecialityArray[position]);
-        DocDays1.setText("Schedule1 "+DocDays1Array[position]);
-        DocTime1.setText("timing1  "+DocTiming1Array[position]);
-        DocDays2.setText("Schedule2 "+DocDays2Array[position]);
-        DocTime2.setText("timing2  "+DocTiming2Array[position]);
+        //DocDept.setText(DocDeptArray[position]);
+        DocSpeciality.setText(DocSpecialityArray[position]);
+        DocDays1.setText(DocDays1Array[position]+", "+DocTiming1Array[position]);
+        DocDays2.setText(DocDays2Array[position]+", "+DocTiming2Array[position]);
         return row;
     }
 }

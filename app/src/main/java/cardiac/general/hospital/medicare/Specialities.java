@@ -103,8 +103,7 @@ public class Specialities extends AppCompatActivity {
                 JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
                 //String number = jsonChildNode.optString("Id");
                 String name = jsonChildNode.optString("Name");
-                String outPut = i+1 + ": " +name;
-                specialitiesList.add(createspecialities("specialitiess", outPut));
+                specialitiesList.add(createspecialities("specialitiess", name));
             }
         } catch (Exception ex) {
             Log.e(TAG, "Error: " + ex.getMessage());

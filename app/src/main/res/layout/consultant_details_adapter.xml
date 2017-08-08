@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,48 +8,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/docnameText"
+        android:textAlignment="center"
         android:text="Name"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/docnameText"
         android:text="Dept"
-        android:layout_marginLeft="20dp"
+        android:textAlignment="center"
+        android:visibility="gone"
         android:id="@+id/docdptText"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/docdptText"
         android:text="Dept"
-        android:layout_marginLeft="20dp"
+        android:textAlignment="center"
         android:id="@+id/docspecText"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/docspecText"
+        android:textAlignment="center"
+        android:text="Clinic"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Dept"
-        android:layout_marginLeft="20dp"
+        android:textAlignment="center"
         android:id="@+id/docday1Text"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/docday1Text"
         android:text="Dept"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/doctime1Text"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/doctime1Text"
-        android:text="Dept"
-        android:layout_marginLeft="20dp"
+        android:textAlignment="center"
         android:id="@+id/docday2Text"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/docday2Text"
-        android:text="Dept"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/doctime2Text"/>
-</RelativeLayout>
+</LinearLayout>

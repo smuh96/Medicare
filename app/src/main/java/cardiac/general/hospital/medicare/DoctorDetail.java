@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,7 +40,7 @@ public class DoctorDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_detail);
-
+        DoctorPicture= (ImageView) findViewById(R.id.doctorPic);
         DoctorName= (TextView) findViewById(R.id.doctorname);
         DoctorSpeciality= (TextView) findViewById(R.id.doctorpeciality);
         DoctorDegree= (TextView) findViewById(R.id.doctordegree);
@@ -57,7 +58,8 @@ public class DoctorDetail extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         id = bundle.getString("DocId");
         AsyncCallDoctorDetail task = new AsyncCallDoctorDetail();
-        task.execute();ImageLoadTask task2 = new ImageLoadTask(url, DoctorPicture);
+        ImageLoadTask task2 = new ImageLoadTask(url, DoctorPicture);
+        task.execute();
         task2.execute();
     }
     private class AsyncCallDoctorDetail extends AsyncTask<Void, Void, Void> {
@@ -72,8 +74,18 @@ public class DoctorDetail extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             Log.i(TAG, "onPostExecute");
+            DoctorName.setText(Name);
+            DoctorSpeciality.setText(Speciality);
+            DoctorDegree.setText(Degree);
+            DoctorDays1.setText(Clinicdays1);
+            DoctorTime1.setText(Timing1);
+            DoctorDays2.setText(Clinicdays2);
+            DoctorTime2.setText(Timing2);
+            DoctorContact.setText("Appointments: "+AppointmentContact);
+            DoctorIntro.setText(Introduction);
+            AppointmentBtn.setVisibility(View.VISIBLE);
             pd.dismiss();
-            Toast.makeText(DoctorDetail.this, "" + jsonMainNode, Toast.LENGTH_LONG).show();
+            //Toast.makeText(DoctorDetail.this, "" + jsonMainNode, Toast.LENGTH_LONG).show();
             Log.d(TAG, "OutPut : " +jsonMainNode);
         }
     }
@@ -87,8 +99,7 @@ public class DoctorDetail extends AppCompatActivity {
         protected Bitmap doInBackground(Void... params) {
             try {
                 URL urlConnection = new URL(url);
-                HttpURLConnection connection = (HttpURLConnection) urlConnection
-                        .openConnection();
+                HttpURLConnection connection = (HttpURLConnection) urlConnection.openConnection();
                 connection.setDoInput(true);
                 connection.connect();
                 InputStream input = connection.getInputStream();
@@ -134,18 +145,11 @@ public class DoctorDetail extends AppCompatActivity {
             AppointmentContact = jsonChildNode.optString("AppointmentContact");
             Introduction = jsonChildNode.optString("Introduction");
             PictureAddress = jsonChildNode.optString("PictureAddress");
-            url = PictureAddress.replaceAll("~", "http://medicarehospital.pk/");
+            String PictureAddress2 = PictureAddress.replaceAll("~", "http://medicarehospital.pk/");
+            url = PictureAddress2.replaceAll("%", "");
             TreatId = jsonChildNode.optString("TreatId");
             TreatName = jsonChildNode.optString("TreatName");
-            DoctorName.setText(Name);
-            DoctorSpeciality.setText(Speciality);
-            DoctorDegree.setText(Degree);
-            DoctorDays1.setText(Clinicdays1);
-            DoctorTime1.setText(Timing1);
-            DoctorDays2.setText(Clinicdays2);
-            DoctorTime2.setText(Timing2);
-            DoctorContact.setText(AppointmentContact);
-            DoctorIntro.setText(Introduction);
+
             Log.d(TAG, "URL: " + url);
         } catch (Exception ex) {
             Log.e(TAG, "Error: " + ex.getMessage());

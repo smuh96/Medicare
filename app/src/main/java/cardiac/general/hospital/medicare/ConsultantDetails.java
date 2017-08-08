@@ -110,8 +110,8 @@ public class ConsultantDetails extends AppCompatActivity {
                 DocTiming1 = jsonChildNode.optString("Timing1");
                 DocDays2 = jsonChildNode.optString("Clinicdays2");
                 DocTiming2 = jsonChildNode.optString("Timing2");
-                Sr_Name = i + 1 + ": " + DocName;
-                DocNameArray.add(Sr_Name);
+                //Sr_Name = i + 1 + ": " + DocName;
+                DocNameArray.add(DocName);
                 DocDeptArray.add(DocDept);
                 DocSpecialityArray.add(DocSpeciality);
                 DocDays1Array.add(DocDays1);
