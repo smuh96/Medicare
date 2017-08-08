@@ -1,5 +1,6 @@
 package cardiac.general.hospital.medicare;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -13,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,13 +39,16 @@ public class Specialities extends AppCompatActivity {
     ListView listView;
     JSONObject jsonResponse;
     JSONArray jsonMainNode;
-    String outPut;
+    SimpleAdapter simpleAdapter;
+    ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specialities);
 
+        pd = new ProgressDialog(Specialities.this);
+        pd.setMessage("loading");
         noInternet= (TextView) findViewById(R.id.no_internet);
         listView= (ListView) findViewById(R.id.listView1);
         network= String.valueOf(haveNetworkConnection());
@@ -53,8 +56,7 @@ public class Specialities extends AppCompatActivity {
             noInternet.setVisibility(View.GONE);
             AsyncCallWS task = new AsyncCallWS();
             task.execute();
-        }
-        else{
+        }else{
             listView.setVisibility(View.GONE);
         }
     }
@@ -71,8 +73,9 @@ public class Specialities extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             Log.i(TAG, "onPostExecute");
             //Toast.makeText(MainActivity.this, "" + outPut, Toast.LENGTH_LONG).show();
-            SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), specialitiesList, android.R.layout.simple_list_item_1, new String[] {"specialitiess"}, new int[] {android.R.id.text1});
+            simpleAdapter = new SimpleAdapter(getBaseContext(), specialitiesList, android.R.layout.simple_list_item_1, new String[] {"specialitiess"}, new int[] {android.R.id.text1});
             listView.setAdapter(simpleAdapter);
+            pd.dismiss();
             ListViewClick();
         }
     }

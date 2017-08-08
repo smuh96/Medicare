@@ -61,7 +61,8 @@
         <activity
             android:name=".Contact_us"
             android:label="Contact us" />
-        <activity android:name=".SpecialityDetails"></activity>
+        <activity android:name=".SpecialityDetails"
+            android:label="Speciality Details"/>
     </application>
 
 </manifest>
