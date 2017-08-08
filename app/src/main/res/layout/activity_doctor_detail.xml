@@ -25,22 +25,25 @@
             android:layout_gravity="center"
             android:id="@+id/doctorPic"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/doctorpeciality"
+            android:textAlignment="center"
             android:padding="2dp"
             android:textSize="15sp"
             android:textColor="#000"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/doctordegree"
+            android:textAlignment="center"
             android:padding="2dp"
             android:textSize="15sp"
             android:textColor="#000"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
@@ -60,6 +63,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
@@ -77,9 +81,10 @@
                 android:textColor="#000"/>
         </LinearLayout>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/doctorcontact"
+            android:textAlignment="center"
             android:padding="2dp"
             android:textSize="15sp"
             android:textColor="#000"/>
