@@ -163,18 +163,28 @@ public class MakeAppointment extends AppCompatActivity {
                         Toast.makeText(MakeAppointment.this, "Please Select any Consultant", Toast.LENGTH_SHORT).show();
                     }else if(choice1.getText().toString().equals("")) {
                         Toast.makeText(MakeAppointment.this, "Please Enter 1st choice Date", Toast.LENGTH_SHORT).show();
-                    }else if(getRadioChoice1()==null) {
-                        Toast.makeText(MakeAppointment.this, "Please Choose 1st choice Timing", Toast.LENGTH_SHORT).show();
-                    }/*else if(getRadioChoice2()==null) {
+                    }else {
+                        if (getRadioChoice1() == null) {
+                            Toast.makeText(MakeAppointment.this, "Please Choose 1st choice Timing", Toast.LENGTH_SHORT).show();
+                        }/*else if(getRadioChoice2()==null) {
                 Toast.makeText(MakeAppointment.this, "Please Choose 2nd choice Timings", Toast.LENGTH_SHORT).show();
-            }*/else{
-                        Intent mEmail = new Intent(Intent.ACTION_SEND);
-                        mEmail.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@medicarehospital.pk"});
-                        mEmail.putExtra(Intent.EXTRA_SUBJECT, "subject");
-                        mEmail.putExtra(Intent.EXTRA_TEXT, "message"+choice2.getText());
-                        // prompts to choose email client
-                        mEmail.setType("message/rfc822");
-                        startActivity(Intent.createChooser(mEmail, "Choose an email client to send your"));
+            }*/ else {
+                            Intent mEmail = new Intent(Intent.ACTION_SEND);
+                            mEmail.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@medicarehospital.pk"});
+                            mEmail.putExtra(Intent.EXTRA_SUBJECT, "Appointment Details");
+                            String SpecialityText = SpecialitySpinner.getSelectedItem().toString();
+                            SpecialityText = SpecialityText.replaceAll("[{}]", " ");
+                            SpecialityText = SpecialityText.replaceAll("[=]", " ");
+                            SpecialityText = SpecialityText.replaceAll("specialitiess", " ");
+                            String ConsultantText=ConsultantsSpinner.getSelectedItem().toString();
+                            ConsultantText = ConsultantText.replaceAll("[{}]", " ");
+                            ConsultantText = ConsultantText.replaceAll("[=]", " ");
+                            ConsultantText = ConsultantText.replaceAll("consultantss", " ");
+                            mEmail.putExtra(Intent.EXTRA_TEXT, "Patient Name : " + name.getText().toString() + "\nMR # : " + mr_no.getText().toString() + "\nPatient Age : " + age.getText().toString() + "\nPatient Cell # " + contact.getText().toString() + "\nSpeciality : " + SpecialityText + "\nConsultant Name : " + ConsultantText + "\nBrief History : " + brief_history.getText().toString() + "\nPatient 1st Choice date : " + choice1.getText().toString() + "\nPatient 1st Choice Time : " + getRadioChoice1() + "\nPatient 2nd Choice date : " + choice2.getText().toString() + "\nPatient 2nd Choice Time : " + getRadioChoice2());
+                            // prompts to choose email client
+                            mEmail.setType("message/rfc822");
+                            startActivity(Intent.createChooser(mEmail, "Choose an email client to send your"));
+                        }
                     }
                 }
             }
