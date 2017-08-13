@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Specialities"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="@color/colorPrimaryDark"/>
         </LinearLayout>
         <LinearLayout
@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Find a Consultant"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="@color/colorPrimaryDark"/>
         </LinearLayout>
     </LinearLayout>
@@ -75,8 +75,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Appointment"
-                android:textSize="20sp"
+                android:text="Make Appointment"
+                android:textSize="15sp"
                 android:textColor="@color/colorPrimaryDark"/>
         </LinearLayout>
         <LinearLayout
@@ -95,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Online Report"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="@color/colorPrimaryDark"/>
         </LinearLayout>
     </LinearLayout>
@@ -121,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="About us"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="@color/colorPrimaryDark"/>
         </LinearLayout>
         <LinearLayout
@@ -140,7 +140,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Contact us"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="@color/colorPrimaryDark"/>
         </LinearLayout>
     </LinearLayout>

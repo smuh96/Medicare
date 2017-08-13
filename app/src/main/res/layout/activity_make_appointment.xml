@@ -126,8 +126,8 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="4"
-                android:background="@drawable/border"
-                android:entries="@array/speciality_arrays"/>
+                android:id="@+id/speciality_spinner"
+                android:background="@drawable/border"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -146,8 +146,8 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="4"
-                android:background="@drawable/border"
-                android:entries="@array/doctor_arrays"/>
+                android:id="@+id/consultants_spinner"
+                android:background="@drawable/border"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

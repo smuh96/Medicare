@@ -36,6 +36,7 @@ public class DoctorDetail extends AppCompatActivity {
     TextView DoctorName,DoctorSpeciality,DoctorDegree,DoctorDays1,DoctorTime1,DoctorDays2,DoctorTime2,DoctorContact,DoctorIntro;
     Button AppointmentBtn;
     ProgressDialog pd;
+    int SpeciPos,ConsPos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +58,9 @@ public class DoctorDetail extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         id = bundle.getString("DocId");
+        SpeciPos = bundle.getInt("SpeciPos");
+        ConsPos = bundle.getInt("ConsPos");
+        //Toast.makeText(this, ""+SpeciPos+"&"+ConsPos, Toast.LENGTH_SHORT).show();
         AsyncCallDoctorDetail task = new AsyncCallDoctorDetail();
         ImageLoadTask task2 = new ImageLoadTask(url, DoctorPicture);
         task.execute();
@@ -146,8 +150,9 @@ public class DoctorDetail extends AppCompatActivity {
             AppointmentContact = jsonChildNode.optString("AppointmentContact");
             Introduction = jsonChildNode.optString("Introduction");
             PictureAddress = jsonChildNode.optString("PictureAddress");
-            String PictureAddress2 = PictureAddress.replaceAll("~", "http://medicarehospital.pk/");
-            url = PictureAddress2.replaceAll("%", "");
+            url = PictureAddress.replaceAll("~", "http://medicarehospital.pk/");
+            url = url.replaceAll("%", "");
+            url = url.replaceAll(" ", "");
             TreatId = jsonChildNode.optString("TreatId");
             TreatName = jsonChildNode.optString("TreatName");
 
@@ -161,7 +166,8 @@ public class DoctorDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DoctorDetail.this, AddAppointment.class);
-                intent.putExtra("ID", TreatId);
+                intent.putExtra("ConsPos", ConsPos);
+                intent.putExtra("SpeciePos", SpeciPos);
                 startActivity(intent);
             }
         });

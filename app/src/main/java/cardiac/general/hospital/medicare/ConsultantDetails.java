@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +28,8 @@ public class ConsultantDetails extends AppCompatActivity {
     Object resultString;
     JSONObject jsonResponse;
     JSONArray jsonMainNode;
-    String id, Sr_Name;
+    String id;
+    int SpecPosition;
     String DocId, DocName, DocDept, DocSpeciality, DocDays1, DocTiming1, DocDays2, DocTiming2;
     ListView consultantList;
     ArrayList<String> DocNameArray = new ArrayList<String>();
@@ -52,6 +54,8 @@ public class ConsultantDetails extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         id = bundle.getString("ID");
+        SpecPosition = bundle.getInt("SpecPos");
+        //Toast.makeText(this, ""+SpecPosition, Toast.LENGTH_SHORT).show();
     }
     private class AsyncCallConsultantDetails extends AsyncTask<Void, Void, Void> {
         @Override
@@ -133,6 +137,8 @@ public class ConsultantDetails extends AppCompatActivity {
                     //Toast.makeText(ConsultantDetails.this, "ID : "+DocId, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(ConsultantDetails.this, DoctorDetail.class);
                     intent.putExtra("DocId", DocId);
+                    intent.putExtra("SpeciPos", SpecPosition);
+                    intent.putExtra("ConsPos", position);
                     startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();

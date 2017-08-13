@@ -118,9 +118,11 @@ public class FindConsultant extends AppCompatActivity {
                 try {
                     JSONObject jsonChildNode = jsonMainNode.getJSONObject(position);
                     String number = jsonChildNode.optString("Id");
-                    //Toast.makeText(Specialities.this, "ID : "+number, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(FindConsultant.this, "ID : "+number, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(FindConsultant.this, ConsultantDetails.class);
                     intent.putExtra("ID", number);
+                    //Toast.makeText(FindConsultant.this, "ID : "+position, Toast.LENGTH_SHORT).show();
+                    intent.putExtra("SpecPos", position);
                     startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
