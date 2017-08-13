@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -34,7 +36,9 @@ import java.util.Map;
 
 public class MakeAppointment extends AppCompatActivity {
     Button SubmitBtn;
-    EditText choice1,choice2;
+    EditText name,mr_no,age,contact,brief_history,choice1,choice2;
+    RadioGroup RadioChoice1,RadioChoice2;
+    RadioButton RadioChoice11,RadioChoice12,RadioChoice13,RadioChoice21,RadioChoice22,RadioChoice23;
     Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener date;
     String TAG = "Response";
@@ -45,8 +49,8 @@ public class MakeAppointment extends AppCompatActivity {
     SimpleAdapter simpleAdapterSpec,simpleAdapterCons;
     Spinner SpecialitySpinner,ConsultantsSpinner;
     List<Map<String,String>> consultantsList = new ArrayList<Map<String,String>>();
-    String TreatmentId;
     int TreatPos,ConsPos=0;
+    String SpecialityString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +58,25 @@ public class MakeAppointment extends AppCompatActivity {
 
         SubmitBtn= (Button) findViewById(R.id.AppointmentSubmitBtn);
 
+        name= (EditText) findViewById(R.id.pt_name);
+        mr_no= (EditText) findViewById(R.id.pt_mrno);
+        age= (EditText) findViewById(R.id.pt_age);
+        contact= (EditText) findViewById(R.id.pt_cell);
+        brief_history= (EditText) findViewById(R.id.pt_brief);
+
+        RadioChoice1= (RadioGroup) findViewById(R.id.radiochoice1);
+        RadioChoice2= (RadioGroup) findViewById(R.id.radiochoice2);
+
+        RadioChoice11= (RadioButton) findViewById(R.id.radiochoice1_1);
+        RadioChoice12= (RadioButton) findViewById(R.id.radiochoice1_2);
+        RadioChoice13= (RadioButton) findViewById(R.id.radiochoice1_3);
+        RadioChoice21= (RadioButton) findViewById(R.id.radiochoice2_1);
+        RadioChoice22= (RadioButton) findViewById(R.id.radiochoice2_2);
+        RadioChoice23= (RadioButton) findViewById(R.id.radiochoice2_3);
+
         choice1= (EditText) findViewById(R.id.datechoice1);
         choice2= (EditText) findViewById(R.id.datechoice2);
+
         SpecialitySpinner= (Spinner) findViewById(R.id.speciality_spinner);
         ConsultantsSpinner= (Spinner) findViewById(R.id.consultants_spinner);
 
@@ -126,7 +147,36 @@ public class MakeAppointment extends AppCompatActivity {
         SubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MakeAppointment.this, "Submit Successfully", Toast.LENGTH_SHORT).show();
+                if (SpecialitySpinner == null || SpecialitySpinner.getSelectedItem() ==null || SpecialitySpinner.getAdapter()==null ){
+                    SpecialityString = (String)SpecialitySpinner.getSelectedItem();
+                    Toast.makeText(MakeAppointment.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                }else{
+                    if(name.getText().toString().equals("")) {
+                        Toast.makeText(MakeAppointment.this, "Please Enter Your Full Name", Toast.LENGTH_SHORT).show();
+                    }else if(age.getText().toString().equals("")) {
+                        Toast.makeText(MakeAppointment.this, "Please Enter Your age", Toast.LENGTH_SHORT).show();
+                    }else if(contact.getText().toString().equals("")) {
+                        Toast.makeText(MakeAppointment.this, "Please Enter Your Contact #", Toast.LENGTH_SHORT).show();
+                    }else if(SpecialitySpinner.getSelectedItem().toString().trim().equals("{specialitiess=Select any Speciality}")) {
+                        Toast.makeText(MakeAppointment.this, "Please Select any Speciality", Toast.LENGTH_SHORT).show();
+                    }else if(ConsultantsSpinner.getSelectedItem().toString().trim().equals("{consultantss=Select any Consultant}")){
+                        Toast.makeText(MakeAppointment.this, "Please Select any Consultant", Toast.LENGTH_SHORT).show();
+                    }else if(choice1.getText().toString().equals("")) {
+                        Toast.makeText(MakeAppointment.this, "Please Enter 1st choice Date", Toast.LENGTH_SHORT).show();
+                    }else if(getRadioChoice1()==null) {
+                        Toast.makeText(MakeAppointment.this, "Please Choose 1st choice Timing", Toast.LENGTH_SHORT).show();
+                    }/*else if(getRadioChoice2()==null) {
+                Toast.makeText(MakeAppointment.this, "Please Choose 2nd choice Timings", Toast.LENGTH_SHORT).show();
+            }*/else{
+                        Intent mEmail = new Intent(Intent.ACTION_SEND);
+                        mEmail.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@medicarehospital.pk"});
+                        mEmail.putExtra(Intent.EXTRA_SUBJECT, "subject");
+                        mEmail.putExtra(Intent.EXTRA_TEXT, "message"+choice2.getText());
+                        // prompts to choose email client
+                        mEmail.setType("message/rfc822");
+                        startActivity(Intent.createChooser(mEmail, "Choose an email client to send your"));
+                    }
+                }
             }
         });
     }
@@ -154,7 +204,7 @@ public class MakeAppointment extends AppCompatActivity {
                 SpecialitySpinner.setEnabled(false);
 
             }else{
-                SpecialitySpinner.setSelection(0);
+                SpecialitySpinner.setSelection(TreatPos);
             }
         }
     }
@@ -183,7 +233,7 @@ public class MakeAppointment extends AppCompatActivity {
                 ConsultantsSpinner.setEnabled(false);
 
             }else{
-                ConsultantsSpinner.setSelection(0);
+                ConsultantsSpinner.setSelection(ConsPos);
             }
         }
     }
@@ -275,5 +325,17 @@ public class MakeAppointment extends AppCompatActivity {
         HashMap<String, String> consultantsNameNo = new HashMap<String, String>();
         consultantsNameNo.put(name, number);
         return consultantsNameNo;
+    }
+    private String getRadioChoice1(){
+        if (RadioChoice11.isChecked()){return RadioChoice11.getText().toString();
+        }if (RadioChoice12.isChecked()){return RadioChoice12.getText().toString();
+        }if (RadioChoice13.isChecked()){return RadioChoice13.getText().toString();
+        }return null;
+    }
+    private String getRadioChoice2(){
+        if (RadioChoice21.isChecked()){return RadioChoice21.getText().toString();
+        }if (RadioChoice22.isChecked()){return RadioChoice22.getText().toString();
+        }if (RadioChoice23.isChecked()){return RadioChoice23.getText().toString();
+        }return null;
     }
 }

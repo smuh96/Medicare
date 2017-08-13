@@ -26,7 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="Full Name"
+            android:text="Full Name*"
             android:textColor="#000"
             android:textSize="12sp"/>
             <EditText
@@ -34,6 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="4"
+                android:id="@+id/pt_name"
                 android:background="@drawable/border"
                 android:hint="Enter your Full Name"/>
         </LinearLayout>
@@ -55,6 +56,7 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="4"
+                android:id="@+id/pt_mrno"
                 android:background="@drawable/border"
                 android:hint="Enter your MR #"/>
         </LinearLayout>
@@ -68,7 +70,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="Age "
+            android:text="Age* "
             android:textColor="#000"
             android:textSize="12sp"/>
             <EditText
@@ -76,6 +78,7 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="2"
+                android:id="@+id/pt_age"
                 android:background="@drawable/border"
                 android:inputType="number"
                 android:hint="Enter Age"/>
@@ -97,7 +100,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="Contact # "
+            android:text="Contact #* "
             android:textColor="#000"
             android:textSize="12sp"/>
             <EditText
@@ -106,6 +109,7 @@
                 android:layout_height="40dp"
                 android:layout_weight="4"
                 android:inputType="number"
+                android:id="@+id/pt_cell"
                 android:background="@drawable/border"
                 android:hint="Enter your Contact Number"/>
         </LinearLayout>
@@ -119,7 +123,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="Speciality"
+            android:text="Speciality*"
             android:gravity="center_vertical"
             android:textColor="#000"
             android:textSize="12sp"/>
@@ -140,7 +144,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="Doctor "
+            android:text="Doctor* "
             android:gravity="center_vertical"
             android:textColor="#000"
             android:textSize="12sp"/>
@@ -168,6 +172,7 @@
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:layout_weight="4"
+                android:id="@+id/pt_brief"
                 android:background="@drawable/border"
                 android:hint="Write Brief History"/>
         </LinearLayout>
@@ -187,7 +192,7 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:text="1st Choice"
+                    android:text="1st Choice*"
                     android:gravity="center_vertical"
                     android:textColor="#000"
                     android:textSize="12sp"/>
@@ -207,21 +212,25 @@
                         android:background="@drawable/border"/>
                 <RadioGroup
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radiochoice1">
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
+                        android:id="@+id/radiochoice1.1"
                         android:text="Morning (8:00 am to 1:30 pm)"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
+                        android:id="@+id/radiochoice1.2"
                         android:text="After Noon (1:30 pm to 5:00 pm)"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
+                        android:id="@+id/radiochoice1.3"
                         android:text="Evening (5:00 pm to 10:00 pm)"/>
                 </RadioGroup>
                 </LinearLayout>
@@ -255,30 +264,39 @@
                         android:background="@drawable/border"/>
                 <RadioGroup
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radiochoice2">
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
+                        android:id="@+id/radiochoice2.1"
                         android:text="Morning (8:00 am to 1:30 pm)"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
+                        android:id="@+id/radiochoice2.2"
                         android:text="After Noon (1:30 pm to 5:00 pm)"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
+                        android:id="@+id/radiochoice2.3"
                         android:text="Evening (5:00 pm to 10:00 pm)"/>
                 </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="(*) Fields are mandatory"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="@color/colorPrimaryDark"
             android:textColor="#fff"
             android:id="@+id/AppointmentSubmitBtn"
