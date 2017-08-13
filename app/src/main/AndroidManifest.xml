@@ -38,7 +38,7 @@
             android:name=".FindConsultant"
             android:label="Find a Consultant" />
         <activity
-            android:name=".AddAppointment"
+            android:name=".MakeAppointment"
             android:label="Make Appointment" />
         <activity
             android:name=".OnlineReport"

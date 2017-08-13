@@ -21,7 +21,7 @@ public class MainMenu extends AppCompatActivity {
         startActivity(i);
     }
     public void Appointment_Click(View view){
-        Intent i = new Intent(MainMenu.this,AddAppointment.class);
+        Intent i = new Intent(MainMenu.this,MakeAppointment.class);
         startActivity(i);
     }
     public void Report_Click(View view){

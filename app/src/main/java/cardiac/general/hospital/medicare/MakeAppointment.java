@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class AddAppointment extends AppCompatActivity {
+public class MakeAppointment extends AppCompatActivity {
     Button SubmitBtn;
     EditText choice1,choice2;
     Calendar myCalendar = Calendar.getInstance();
@@ -68,7 +68,7 @@ public class AddAppointment extends AppCompatActivity {
                     jsonChildNodeSpec = jsonMainNodeSpec.getJSONObject(position-1);
                     String number = jsonChildNodeSpec.optString("Id");
                     TreatPos= Integer.parseInt(number);
-                    //Toast.makeText(AddAppointment.this, "ID : "+number +"&"+ TreatmentId, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MakeAppointment.this, "ID : "+number +"&"+ TreatmentId, Toast.LENGTH_SHORT).show();
                     AsyncCallconsultants task2 = new AsyncCallconsultants();
                     task2.execute();
                 } catch (JSONException e) {
@@ -97,7 +97,7 @@ public class AddAppointment extends AppCompatActivity {
                     }
 
                 };
-                new DatePickerDialog(AddAppointment.this, date, myCalendar
+                new DatePickerDialog(MakeAppointment.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -118,7 +118,7 @@ public class AddAppointment extends AppCompatActivity {
                         updateLabel2();
                     }
                 };
-                new DatePickerDialog(AddAppointment.this, date, myCalendar
+                new DatePickerDialog(MakeAppointment.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -126,7 +126,7 @@ public class AddAppointment extends AppCompatActivity {
         SubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AddAppointment.this, "Submit Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MakeAppointment.this, "Submit Successfully", Toast.LENGTH_SHORT).show();
             }
         });
     }
