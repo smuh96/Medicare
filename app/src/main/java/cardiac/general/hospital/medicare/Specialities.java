@@ -73,7 +73,7 @@ public class Specialities extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             Log.i(TAG, "onPostExecute");
             //Toast.makeText(MainActivity.this, "" + outPut, Toast.LENGTH_LONG).show();
-            simpleAdapter = new SimpleAdapter(getBaseContext(), specialitiesList, android.R.layout.simple_list_item_1, new String[] {"specialitiess"}, new int[] {android.R.id.text1});
+            simpleAdapter = new SimpleAdapter(getBaseContext(), specialitiesList,R.layout.single_list_row, new String[] {"specialitiess"}, new int[] {android.R.id.text1});
             listView.setAdapter(simpleAdapter);
             pd.dismiss();
             ListViewClick();

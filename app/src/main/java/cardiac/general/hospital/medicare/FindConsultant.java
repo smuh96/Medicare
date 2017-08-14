@@ -70,7 +70,7 @@ public class FindConsultant extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             Log.i(TAG, "onPostExecute");
             //Toast.makeText(MainActivity.this, "" + outPut, Toast.LENGTH_LONG).show();
-            SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), FindAConsultantList, android.R.layout.simple_list_item_1, new String[] {"FindAConsultants"}, new int[] {android.R.id.text1});
+            SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), FindAConsultantList,R.layout.single_list_row, new String[] {"FindAConsultants"}, new int[] {android.R.id.text1});
             listView.setAdapter(simpleAdapter);
             ListViewClick();
         }

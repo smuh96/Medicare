@@ -66,7 +66,6 @@ public class MakeAppointment extends AppCompatActivity {
 
         RadioChoice1= (RadioGroup) findViewById(R.id.radiochoice1);
         RadioChoice2= (RadioGroup) findViewById(R.id.radiochoice2);
-
         RadioChoice11= (RadioButton) findViewById(R.id.radiochoice1_1);
         RadioChoice12= (RadioButton) findViewById(R.id.radiochoice1_2);
         RadioChoice13= (RadioButton) findViewById(R.id.radiochoice1_3);
@@ -108,9 +107,7 @@ public class MakeAppointment extends AppCompatActivity {
                 date = new DatePickerDialog.OnDateSetListener() {
 
                     @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                          int dayOfMonth) {
-                        // TODO Auto-generated method stub
+                    public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
                         myCalendar.set(Calendar.YEAR, year);
                         myCalendar.set(Calendar.MONTH, monthOfYear);
                         myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -121,6 +118,7 @@ public class MakeAppointment extends AppCompatActivity {
                 new DatePickerDialog(MakeAppointment.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                myCalendar.setTimeInMillis(System.currentTimeMillis() - 1000);
             }
         });
 
@@ -167,8 +165,8 @@ public class MakeAppointment extends AppCompatActivity {
                         if (getRadioChoice1() == null) {
                             Toast.makeText(MakeAppointment.this, "Please Choose 1st choice Timing", Toast.LENGTH_SHORT).show();
                         }/*else if(getRadioChoice2()==null) {
-                Toast.makeText(MakeAppointment.this, "Please Choose 2nd choice Timings", Toast.LENGTH_SHORT).show();
-            }*/ else {
+                        Toast.makeText(MakeAppointment.this, "Please Choose 2nd choice Timings", Toast.LENGTH_SHORT).show();
+                        }*/ else {
                             Intent mEmail = new Intent(Intent.ACTION_SEND);
                             mEmail.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@medicarehospital.pk"});
                             mEmail.putExtra(Intent.EXTRA_SUBJECT, "Appointment Details");
@@ -250,7 +248,6 @@ public class MakeAppointment extends AppCompatActivity {
     private void updateLabel1() {
         String myFormat = "dd MMM, yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
         choice1.setText(sdf.format(myCalendar.getTime()));
     }
     private void updateLabel2() {
