@@ -181,7 +181,7 @@ public class MakeAppointment extends AppCompatActivity {
                             mEmail.putExtra(Intent.EXTRA_TEXT, "Patient Name : " + name.getText().toString() + "\nMR # : " + mr_no.getText().toString() + "\nPatient Age : " + age.getText().toString() + "\nPatient Cell # " + contact.getText().toString() + "\nSpeciality : " + SpecialityText + "\nConsultant Name : " + ConsultantText + "\nBrief History : " + brief_history.getText().toString() + "\nPatient 1st Choice date : " + choice1.getText().toString() + "\nPatient 1st Choice Time : " + getRadioChoice1() + "\nPatient 2nd Choice date : " + choice2.getText().toString() + "\nPatient 2nd Choice Time : " + getRadioChoice2());
                             // prompts to choose email client
                             mEmail.setType("message/rfc822");
-                            startActivity(Intent.createChooser(mEmail, "Choose an email client to send your"));
+                            startActivity(Intent.createChooser(mEmail, "Choose an email client to send your Appointment"));
                         }
                     }
                 }
@@ -200,9 +200,10 @@ public class MakeAppointment extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             Log.i(TAG, "onPostExecute");
-            simpleAdapterSpec = new SimpleAdapter(getBaseContext(), specialitiesList, android.R.layout.simple_list_item_1, new String[] {"specialitiess"}, new int[] {android.R.id.text1});
+            simpleAdapterSpec = new SimpleAdapter(getBaseContext(), specialitiesList,  R.layout.spinner_single_row, new String[] {"specialitiess"}, new int[] {R.id.spinner_text});
             simpleAdapterSpec.notifyDataSetChanged();
             SpecialitySpinner.setAdapter(simpleAdapterSpec);
+            ConsultantsSpinner.setEmptyView(findViewById(R.id.spinner_empty));
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
             if (bundle!= null) {// to avoid the NullPointerException
@@ -229,9 +230,10 @@ public class MakeAppointment extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             Log.i(TAG, "onPostExecute");
-            simpleAdapterCons = new SimpleAdapter(getBaseContext(), consultantsList, android.R.layout.simple_list_item_1, new String[] {"consultantss"}, new int[] {android.R.id.text1});
+            simpleAdapterCons = new SimpleAdapter(getBaseContext(), consultantsList, R.layout.spinner_single_row, new String[] {"consultantss"}, new int[] {R.id.spinner_text});
             simpleAdapterCons.notifyDataSetChanged();
             ConsultantsSpinner.setAdapter(simpleAdapterCons);
+            ConsultantsSpinner.setEmptyView(findViewById(R.id.spinner_empty));
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
             if (bundle!= null) {// to avoid the NullPointerException
