@@ -4,17 +4,16 @@ import android.content.Context;
 import android.database.Cursor;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class DbBackend extends DbObject {
 
     private String SpecialitiesJson;
     private int BookmarkParaPosition;
+
     public DbBackend(Context context) {
         super(context);
     }
+
     public String[] surah_arabic() {
         String query = "Select * from Surah_Names";
         Cursor cursor = this.getDbConnection().rawQuery(query, null);
@@ -58,7 +57,6 @@ public class DbBackend extends DbObject {
     public int getBookmarkParaPosition(int index) {
         String query = "SELECT position FROM bookmark_para ORDER BY _id LIMIT 1 OFFSET "+index;
         Cursor cursor = this.getDbConnection().rawQuery(query, null);
-
         if (cursor.moveToFirst()) {
             do {
                 BookmarkParaPosition= cursor.getInt(cursor.getColumnIndexOrThrow("position"));
