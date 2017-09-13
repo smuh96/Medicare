@@ -15,4 +15,12 @@
         android:id="@+id/no_internet"
         android:gravity="center"
         android:layout_centerInParent="true"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="No data available"
+        android:id="@+id/no_data"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

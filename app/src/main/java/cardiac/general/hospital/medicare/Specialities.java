@@ -76,6 +76,7 @@ public class Specialities extends AppCompatActivity {
             simpleAdapter = new SimpleAdapter(getBaseContext(), specialitiesList,R.layout.single_list_row, new String[] {"specialitiess"}, new int[] {android.R.id.text1});
             listView.setAdapter(simpleAdapter);
             pd.dismiss();
+            listView.setEmptyView(findViewById(R.id.no_data));
             ListViewClick();
         }
     }

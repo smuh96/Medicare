@@ -43,6 +43,7 @@
             android:label="Make Appointment" />
         <activity
             android:name=".OnlineReport"
+            android:theme="@style/SplashTheme"
             android:label="Online Reports" />
         <activity
             android:name=".About"

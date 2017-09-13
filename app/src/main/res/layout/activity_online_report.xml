@@ -3,11 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     android:orientation="vertical"
     android:background="#fff"
     tools:context="cardiac.general.hospital.medicare.OnlineReport">
-    <ImageView
+    <!--<ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
@@ -45,5 +44,10 @@
         android:layout_marginTop="10dp"
         android:textColor="#fff"
         android:id="@+id/getReportBtn"
-        android:background="@color/colorPrimaryDark"/>
+        android:background="@color/colorPrimaryDark"/>-->
+    <WebView  xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/webview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        />
 </LinearLayout>
