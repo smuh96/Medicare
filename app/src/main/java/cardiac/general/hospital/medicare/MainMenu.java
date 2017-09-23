@@ -25,7 +25,7 @@ public class MainMenu extends AppCompatActivity {
         startActivity(i);
     }
     public void Report_Click(View view){
-        Intent i = new Intent(MainMenu.this,OnlineReport.class);
+        Intent i = new Intent(MainMenu.this,Report.class);
         startActivity(i);
     }
     public void About_Click(View view){

@@ -14,12 +14,12 @@
 
     <application
         android:allowBackup="true"
+        android:configChanges="orientation|keyboardHidden|screenSize"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:configChanges="orientation|keyboardHidden|screenSize">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".Splash"
             android:theme="@style/SplashTheme">
@@ -43,7 +43,6 @@
             android:label="Make Appointment" />
         <activity
             android:name=".OnlineReport"
-            android:theme="@style/SplashTheme"
             android:label="Online Reports" />
         <activity
             android:name=".About"
@@ -69,8 +68,18 @@
         <activity
             android:name=".ConsultantDetails"
             android:label="Consultant Details" />
-        <activity android:name=".DoctorDetail"
+        <activity
+            android:name=".DoctorDetail"
             android:label="Doctor Details"/>
+        <activity
+            android:name=".Report"
+            android:label="Online Reports"/>
+        <activity
+            android:name=".ReportList"
+            android:label="Reports List"/>
+        <activity
+            android:name=".ViewReport"
+            android:label="View Report"/>
     </application>
 
 </manifest>

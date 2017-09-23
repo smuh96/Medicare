@@ -87,7 +87,6 @@ public class DoctorDetail extends AppCompatActivity {
             DoctorContact.setText("Appointments: "+AppointmentContact);
             DoctorIntro.setText(Introduction);
             AppointmentBtn.setVisibility(View.VISIBLE);
-            pd.dismiss();
             //Toast.makeText(DoctorDetail.this, "" + jsonMainNode, Toast.LENGTH_LONG).show();
             Log.d(TAG, "OutPut : " +jsonMainNode);
             AppointmentBtnClick();
@@ -118,6 +117,7 @@ public class DoctorDetail extends AppCompatActivity {
         protected void onPostExecute(Bitmap result) {
             super.onPostExecute(result);
             DoctorPicture.setImageBitmap(result);
+            pd.dismiss();
         }
     }
     public void GetJSON() {

@@ -49,6 +49,7 @@ public class Specialities extends AppCompatActivity {
 
         pd = new ProgressDialog(Specialities.this);
         pd.setMessage("loading");
+        pd.show();
         noInternet= (TextView) findViewById(R.id.no_internet);
         listView= (ListView) findViewById(R.id.listView1);
         network= String.valueOf(haveNetworkConnection());

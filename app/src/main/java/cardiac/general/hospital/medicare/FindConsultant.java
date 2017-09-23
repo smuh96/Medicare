@@ -1,5 +1,6 @@
 package cardiac.general.hospital.medicare;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -40,15 +41,20 @@ public class FindConsultant extends AppCompatActivity {
     JSONObject jsonResponse;
     JSONArray jsonMainNode;
     String outPut;
+    ProgressDialog pd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_consultant);
 
+        pd = new ProgressDialog(FindConsultant.this);
+        pd.setMessage("loading");
+        pd.show();
         noInternet= (TextView) findViewById(R.id.no_internet2);
         listView= (ListView) findViewById(R.id.listView2);
         network= String.valueOf(haveNetworkConnection());
         if (network.equals("true")) {
+
             noInternet.setVisibility(View.GONE);
             AsyncCallConsultant task = new AsyncCallConsultant();
             task.execute();
@@ -72,6 +78,7 @@ public class FindConsultant extends AppCompatActivity {
             //Toast.makeText(MainActivity.this, "" + outPut, Toast.LENGTH_LONG).show();
             SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), FindAConsultantList,R.layout.single_list_row, new String[] {"FindAConsultants"}, new int[] {android.R.id.text1});
             listView.setAdapter(simpleAdapter);
+            pd.dismiss();
             ListViewClick();
         }
     }
