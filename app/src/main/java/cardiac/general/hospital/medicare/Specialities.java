@@ -31,14 +31,12 @@ import java.util.Map;
 public class Specialities extends AppCompatActivity {
 
     String TAG = "Response";
-    Object resultString;
+    String jsonStr;
     boolean haveConnectedWifi = false;
     boolean haveConnectedMobile = false;
     String network;
     TextView noInternet;
     ListView listView;
-    JSONObject jsonResponse;
-    JSONArray jsonMainNode;
     SimpleAdapter simpleAdapter;
     ProgressDialog pd;
 
@@ -83,24 +81,14 @@ public class Specialities extends AppCompatActivity {
     }
     List<Map<String,String>> specialitiesList = new ArrayList<Map<String,String>>();
     public void GetJSON() {
-        String METHOD_NAME = "Get_Speciality";
-        String NAMESPACE = "http://medicarehospital.pk//";
-        String URL = "http://medicarehospital.pk/WebService.asmx";
-        String SOAP_ACTION = NAMESPACE+METHOD_NAME;
+        HttpHandler sh = new HttpHandler();
+        String URL = "http://medicarehospital.pk/SpecialityHandler.ashx";
+        jsonStr = sh.makeServiceCall(URL);
+        Log.d(TAG,URL+jsonStr);
         try {
-            SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
-            SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-            soapEnvelope.dotNet = true;
-            soapEnvelope.setOutputSoapObject(Request);
-
-            HttpTransportSE transport = new HttpTransportSE(URL);
-
-            transport.call(SOAP_ACTION, soapEnvelope);
-            resultString= soapEnvelope.getResponse();
-            String jsonString="{\"specialities\":"+resultString.toString()+"}";
-            jsonResponse = new JSONObject(jsonString);
-            jsonMainNode = jsonResponse.optJSONArray("specialities");
-            Log.i(TAG, "Result: " + jsonMainNode);
+            JSONObject jsonObj = new JSONObject(jsonStr);
+            // Getting JSON Array node
+            JSONArray jsonMainNode = jsonObj.getJSONArray("Specialitydata");
             for(int i = 0; i<jsonMainNode.length();i++){
                 JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
                 //String number = jsonChildNode.optString("Id");
@@ -121,6 +109,9 @@ public class Specialities extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
+                    JSONObject jsonObj = new JSONObject(jsonStr);
+                    // Getting JSON Array node
+                    JSONArray jsonMainNode = jsonObj.getJSONArray("Specialitydata");
                     JSONObject jsonChildNode = jsonMainNode.getJSONObject(position);
                     String number = jsonChildNode.optString("Id");
                     //Toast.makeText(Specialities.this, "ID : "+number, Toast.LENGTH_SHORT).show();

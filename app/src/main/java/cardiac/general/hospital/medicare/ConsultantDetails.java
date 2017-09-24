@@ -25,9 +25,6 @@ import cardiac.general.hospital.medicare.Adapter.ConsultantDetailsAdapter;
 
 public class ConsultantDetails extends AppCompatActivity {
     String TAG = "Response";
-    Object resultString;
-    JSONObject jsonResponse;
-    JSONArray jsonMainNode;
     String id;
     int SpecPosition;
     String DocId, DocName, DocDept, DocSpeciality, DocDays1, DocTiming1, DocDays2, DocTiming2;
@@ -40,6 +37,7 @@ public class ConsultantDetails extends AppCompatActivity {
     ArrayList<String> DocDays2Array = new ArrayList<String>();
     ArrayList<String> DocTiming2Array = new ArrayList<String>();
     ProgressDialog pd;
+    String jsonStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,28 +80,19 @@ public class ConsultantDetails extends AppCompatActivity {
             ConsultantDetailsAdapter simpleAdapter = new ConsultantDetailsAdapter(getBaseContext(), docNames, docDepts, docSpeciality, docDays1,doctime1,docDays2,doctime2);
             consultantList.setAdapter(simpleAdapter);
             pd.dismiss();
+            consultantList.setEmptyView(findViewById(R.id.no_data));
             ListViewClick();
         }
     }
     public void GetJSON() {
-        String METHOD_NAME = "Get_ConultantDetails";
-        String NAMESPACE = "http://medicarehospital.pk//";
-        String URL = "http://medicarehospital.pk/WebService.asmx";
-        String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+        HttpHandler sh = new HttpHandler();
+        String URL = "http://medicarehospital.pk/ConsultantDetailHandler.ashx?TreatementId="+id;
+        jsonStr = sh.makeServiceCall(URL);
+        Log.d(TAG,URL+jsonStr);
         try {
-            SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
-            Request.addProperty("TreatmentId", id);
-            SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-            soapEnvelope.dotNet = true;
-            soapEnvelope.setOutputSoapObject(Request);
-            HttpTransportSE transport = new HttpTransportSE(URL);
-            transport.call(SOAP_ACTION, soapEnvelope);
-            resultString = soapEnvelope.getResponse();
-
-            String jsonString = "{\"specialities\":" + resultString.toString() + "}";
-            jsonResponse = new JSONObject(jsonString);
-            jsonMainNode = jsonResponse.optJSONArray("specialities");
-            Log.i(TAG, "Result: " + jsonMainNode);
+            JSONObject jsonObj = new JSONObject(jsonStr);
+            // Getting JSON Array node
+            JSONArray jsonMainNode = jsonObj.getJSONArray("ConsultantDetail");
             for (int i = 0; i < jsonMainNode.length(); i++) {
                 JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
                 //DocId = jsonChildNode.optString("Id");
@@ -123,7 +112,7 @@ public class ConsultantDetails extends AppCompatActivity {
                 DocDays2Array.add(DocDays2);
                 DocTiming2Array.add(DocTiming2);
             }
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             Log.e(TAG, "Error: " + ex.getMessage());
         }
     }
@@ -132,6 +121,9 @@ public class ConsultantDetails extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
+                    JSONObject jsonObj = new JSONObject(jsonStr);
+                    // Getting JSON Array node
+                    JSONArray jsonMainNode = jsonObj.getJSONArray("ConsultantDetail");
                     JSONObject jsonChildNode = jsonMainNode.getJSONObject(position);
                     DocId = jsonChildNode.optString("DoctorId");
                     //Toast.makeText(ConsultantDetails.this, "ID : "+DocId, Toast.LENGTH_SHORT).show();

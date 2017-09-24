@@ -31,10 +31,7 @@ import java.util.Objects;
 public class SpecialityDetails extends AppCompatActivity {
 
     String TAG = "Response";
-    Object resultString;
     ImageView cover;
-    JSONObject jsonResponse;
-    JSONArray jsonMainNode;
     String url;
     String id;
     TextView specialityName;
@@ -44,6 +41,7 @@ public class SpecialityDetails extends AppCompatActivity {
     String heading1,heading2,heading3,heading4,heading5;
     String paragraph1,paragraph2,paragraph3,paragraph4,paragraph5;
     ProgressDialog pd;
+    String jsonStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,24 +123,14 @@ public class SpecialityDetails extends AppCompatActivity {
         }
     }
     public void GetJSON() {
-        String METHOD_NAME = "Get_SpecialityDetails";
-        String NAMESPACE = "http://medicarehospital.pk//";
-        String URL = "http://medicarehospital.pk/WebService.asmx";
-        String SOAP_ACTION = NAMESPACE+METHOD_NAME;
+        HttpHandler sh = new HttpHandler();
+        String URL = "http://medicarehospital.pk/SpecialityDetailHandler.ashx?TreatementId="+id;
+        jsonStr = sh.makeServiceCall(URL);
+        Log.d(TAG,URL+jsonStr);
         try {
-            SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
-            Request.addProperty("TreatmentId",id);
-            SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-            soapEnvelope.dotNet = true;
-            soapEnvelope.setOutputSoapObject(Request);
-            HttpTransportSE transport = new HttpTransportSE(URL);
-            transport.call(SOAP_ACTION, soapEnvelope);
-            resultString= soapEnvelope.getResponse();
-
-            String jsonString="{\"specialities\":"+resultString.toString()+"}";
-            jsonResponse = new JSONObject(jsonString);
-            jsonMainNode = jsonResponse.optJSONArray("specialities");
-            Log.i(TAG, "Result: " + jsonMainNode);
+            JSONObject jsonObj = new JSONObject(jsonStr);
+            // Getting JSON Array node
+            JSONArray jsonMainNode = jsonObj.getJSONArray("SpecialityDetail");
             JSONObject jsonChildNode = jsonMainNode.getJSONObject(0);
             String pic = jsonChildNode.optString("Picture");
             url = pic.replaceAll("~", "http://medicarehospital.pk/");
@@ -158,6 +146,7 @@ public class SpecialityDetails extends AppCompatActivity {
             paragraph4 = jsonChildNode.optString("Headpara4");
             heading5 = jsonChildNode.optString("Head5");
             paragraph5 = jsonChildNode.optString("Headpara5");
+
         } catch (Exception ex) {
             Log.e(TAG, "Error: " + ex.getMessage());
         }

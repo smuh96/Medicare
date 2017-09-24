@@ -231,7 +231,6 @@ public class MakeAppointment extends AppCompatActivity {
                 SpecialitySpinner.setSelection(TreatPos+1);
                 SpecialitySpinner.setClickable(false);
                 SpecialitySpinner.setEnabled(false);
-
             }else{
                 SpecialitySpinner.setSelection(TreatPos);
             }

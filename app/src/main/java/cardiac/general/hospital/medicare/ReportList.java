@@ -99,7 +99,7 @@ public class ReportList extends AppCompatActivity {
                     int serialNo=i+1;
                     String reportName = c.getString("LTEST_DESC");
                     Log.d(TAG, reportName);
-                    reportsNameList.add(reportNames("reportNamess", serialNo+" :  "+reportName));
+                    reportsNameList.add(reportNames("reportNamess", serialNo+"    "+reportName));
                 }
             } catch (final JSONException e) {
                 Log.e(TAG, "Json parsing error: " + e.getMessage());
@@ -132,7 +132,7 @@ public class ReportList extends AppCompatActivity {
                     // looping through All reportsName
                         JSONObject c = reportsName.getJSONObject(position);
                         String reportId = c.getString("LTEST_ID");
-                    Intent intent = new Intent(ReportList.this, ViewReport.class);
+                    Intent intent = new Intent(ReportList.this, OnlineReport.class);
                     intent.putExtra("Report_ID", reportId);
                     startActivity(intent);
                 } catch (final JSONException e) {

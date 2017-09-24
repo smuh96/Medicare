@@ -15,7 +15,7 @@ public class OnlineReport extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_report);
 
-        wv1=(WebView)findViewById(R.id.webview);
+       /* wv1=(WebView)findViewById(R.id.webview);
         wv1.setWebViewClient(new MyBrowser());
         wv1.getSettings().setLoadsImagesAutomatically(true);
         wv1.getSettings().setJavaScriptEnabled(true);
@@ -27,6 +27,6 @@ public class OnlineReport extends Activity {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
             return true;
-        }
+        }*/
     }
 }

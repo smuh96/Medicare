@@ -42,6 +42,7 @@ public class FindConsultant extends AppCompatActivity {
     JSONArray jsonMainNode;
     String outPut;
     ProgressDialog pd;
+    String jsonStr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,31 +85,19 @@ public class FindConsultant extends AppCompatActivity {
     }
     List<Map<String,String>> FindAConsultantList = new ArrayList<Map<String,String>>();
     public void GetJSON() {
-        String METHOD_NAME = "Get_FindAConsultant";
-        String NAMESPACE = "http://medicarehospital.pk//";
-        String URL = "http://medicarehospital.pk/WebService.asmx";
-        String SOAP_ACTION = NAMESPACE+METHOD_NAME;
+        HttpHandler sh = new HttpHandler();
+        String URL = "http://medicarehospital.pk/FindACounsultantHandler.ashx";
+        jsonStr = sh.makeServiceCall(URL);
+        Log.d(TAG,URL+jsonStr);
         try {
-            SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
-            SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-            soapEnvelope.dotNet = true;
-            soapEnvelope.setOutputSoapObject(Request);
-
-            HttpTransportSE transport = new HttpTransportSE(URL);
-
-            transport.call(SOAP_ACTION, soapEnvelope);
-            resultString= soapEnvelope.getResponse();
-            String jsonString="{\"FindAConsultant\":"+resultString.toString()+"}";
-            jsonResponse = new JSONObject(jsonString);
-            jsonMainNode = jsonResponse.optJSONArray("FindAConsultant");
-            Log.i(TAG, "Result: " + jsonMainNode);
+            JSONObject jsonObj = new JSONObject(jsonStr);
+            // Getting JSON Array node
+            JSONArray jsonMainNode = jsonObj.getJSONArray("FindAConsultantdata");
             for(int i = 0; i<jsonMainNode.length();i++){
                 JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
-                //String number = jsonChildNode.optString("Id");
                 outPut = jsonChildNode.optString("Name");
                 FindAConsultantList.add(createFindAConsultant("FindAConsultants", outPut));
             }
-            Log.d(TAG, "OutPut: " + outPut);
         } catch (Exception ex) {
             Log.e(TAG, "Error: " + ex.getMessage());
         }
@@ -123,9 +112,10 @@ public class FindConsultant extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
+                    JSONObject jsonObj = new JSONObject(jsonStr);
+                    JSONArray jsonMainNode = jsonObj.getJSONArray("FindAConsultantdata");
                     JSONObject jsonChildNode = jsonMainNode.getJSONObject(position);
                     String number = jsonChildNode.optString("Id");
-                    //Toast.makeText(FindConsultant.this, "ID : "+number, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(FindConsultant.this, ConsultantDetails.class);
                     intent.putExtra("ID", number);
                     //Toast.makeText(FindConsultant.this, "ID : "+position, Toast.LENGTH_SHORT).show();

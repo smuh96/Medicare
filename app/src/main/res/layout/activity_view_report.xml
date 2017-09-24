@@ -3,12 +3,757 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context="cardiac.general.hospital.medicare.ViewReport">
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+    android:id="@+id/btn_generate"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:text="Generate PDF" />
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/ll_pdflayout"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Right Now reports are not Available"
-        android:textSize="18sp"
-        android:textColor="#000"
-        android:layout_centerInParent="true"/>
+        android:background="#ffffff"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:src="@drawable/smstlogo"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingTop="15dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="Medicare Cardiac &amp; General Hospital"
+                    android:textStyle="bold"
+                    android:padding="2dp"
+                    android:textColor="#000"
+                    android:layout_gravity="center"
+                    android:textSize="7sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="22-23 Shaheed-e-Millat Road, Karachi"
+                    android:padding="2dp"
+                    android:textColor="#000"
+                    android:layout_gravity="center"
+                    android:textSize="5sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="PABX: +92 21 34931886-9 / +92 21 38798941"
+                    android:padding="2dp"
+                    android:textColor="#000"
+                    android:layout_gravity="center"
+                    android:textSize="5sp"/>
+            </LinearLayout>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:src="@drawable/medilogo"
+                android:paddingRight="5dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="6"
+            android:background="@drawable/border1">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Transaction No: "
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:id="@+id/transtionNo"
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="M R #. "
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:id="@+id/mrNo"
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Patient Name: "
+                        android:textColor="#000"
+                        android:textSize="6sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:id="@+id/patientName"
+                        android:textColor="#000"
+                        android:textSize="6sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Sex: "
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="MALE"
+                        android:id="@+id/gender"
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Age: "
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="45 Years"
+                        android:id="@+id/patientAge"
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Collection Date: "
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="01-SEP-12"
+                        android:id="@+id/collectionDate"
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Panel :"
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="CASH PATIENT"
+                        android:id="@+id/panel"
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Consultant: "
+                        android:textColor="#000"
+                        android:textSize="6sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="OSAMA ALI (DR) "
+                        android:id="@+id/consaltant"
+                        android:textColor="#000"
+                        android:textSize="6sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Department: "
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="EMERGENCY"
+                        android:id="@+id/department"
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Laboratory No.: "
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="36"
+                        android:id="@+id/laboratoryNo"
+                        android:textColor="#000"
+                        android:textSize="6sp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="URINE EXAMINATION"
+            android:id="@+id/reportName"
+            android:textColor="#000"
+            android:textAlignment="center"
+            android:padding="5dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:weightSum="6">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="6sp"
+                    android:textColor="#000"
+                    android:padding="3dp"
+                    android:textStyle="bold"
+                    android:text="Dr.Mahadev Harani"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="5sp"
+                    android:textColor="#000"
+                    android:padding="3dp"
+                    android:text="MBBS M.Phil, FCPS Professor &amp; HOD Pathalogy Consultant Haematologist
+"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="6sp"
+                    android:textColor="#000"
+                    android:padding="3dp"
+                    android:textStyle="bold"
+                    android:text="Dr. Amna Hussain "/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="5sp"
+                    android:textColor="#000"
+                    android:padding="3dp"
+                    android:text="MBBS , FCPS Chemical Pathalogy
+"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="6sp"
+                    android:textColor="#000"
+                    android:padding="3dp"
+                    android:textStyle="bold"
+                    android:text="Dr. Puspha"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="5sp"
+                    android:textColor="#000"
+                    android:padding="3dp"
+                    android:text="MBBS , FCPS Assistant Professor Consultant Clinical Microbiologist
+"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="6"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/border1">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:textSize="8sp"
+                        android:textColor="#000"
+                        android:text="Test Description"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:textSize="8sp"
+                        android:textColor="#000"
+                        android:text="Result"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:textSize="8sp"
+                        android:textColor="#000"
+                        android:text="Narmal Range"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/border1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:textSize="8sp"
+                        android:textColor="#000"
+                        android:text="URINE DETAILED REPORT "
+                        android:id="@+id/testDescription"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="6"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="3"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="COLOUR"
+                                android:id="@+id/variable1"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="PH"
+                                android:id="@+id/variable2"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="SPECIFIC GRAVITY"
+                                android:id="@+id/variable3"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="PROTEIN"
+                                android:id="@+id/variable4"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="GLUCOSE"
+                                android:id="@+id/variable5"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="KETONES"
+                                android:id="@+id/variable6"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="BILIRUBIN"
+                                android:id="@+id/variable7"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="UROBILINOGEN"
+                                android:id="@+id/variable8"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="RED CELLS"
+                                android:id="@+id/variable9"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="LEUCOCYTES "
+                                android:id="@+id/variable10"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="EPITHELIAL CELLS"
+                                android:id="@+id/variable11"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="YELLOW"
+                                android:id="@+id/variable1Result"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="5.0"
+                                android:id="@+id/variable2Result"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1.020"
+                                android:id="@+id/variable3Result"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="NIL "
+                                android:id="@+id/variable4Result"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="NIL"
+                                android:id="@+id/variable5Result"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="NIL "
+                                android:id="@+id/variable6Result"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="NEGATIVE "
+                                android:id="@+id/variable7Result"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="NORMAL "
+                                android:id="@+id/variable8Result"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="NIL"
+                                android:id="@+id/variable9Result"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1 - 2"
+                                android:id="@+id/variable10Result"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="(+)"
+                                android:id="@+id/variable11Result"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="2"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="STRAW - YELLOW "
+                                android:id="@+id/variable1Normal"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="5 - 8"
+                                android:id="@+id/variable2Normal"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1.005 - 1.030 "
+                                android:id="@+id/variable3Normal"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="mg % "
+                                android:id="@+id/variable4Normal"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="NIL "
+                                android:id="@+id/variable5Normal"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="NIL "
+                                android:id="@+id/variable6Normal"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="NEGATIVE "
+                                android:id="@+id/variable7Normal"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=" "
+                                android:id="@+id/variable8Normal"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0 - 1"
+                                android:id="@+id/variable9Normal"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0 - 5"
+                                android:id="@+id/variable10Normal"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0 - 2"
+                                android:id="@+id/variable11Normal"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
 </RelativeLayout>

@@ -26,9 +26,7 @@ import java.net.URL;
 
 public class DoctorDetail extends AppCompatActivity {
     String TAG = "Response";
-    Object resultString;
     ImageView DoctorPicture;
-    JSONObject jsonResponse;
     JSONArray jsonMainNode;
     String url,id;
     String Name,Degree,Speciality,Clinicdays1,Timing1,Clinicdays2,Timing2,AppointmentContact,Introduction,PictureAddress,TreatId,TreatName;
@@ -36,6 +34,7 @@ public class DoctorDetail extends AppCompatActivity {
     Button AppointmentBtn;
     ProgressDialog pd;
     int SpeciPos,ConsPos;
+    String jsonStr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,25 +118,15 @@ public class DoctorDetail extends AppCompatActivity {
             DoctorPicture.setImageBitmap(result);
             pd.dismiss();
         }
-    }
-    public void GetJSON() {
-        String METHOD_NAME = "Get_DoctorDetail";
-        String NAMESPACE = "http://medicarehospital.pk//";
-        String URL = "http://medicarehospital.pk/WebService.asmx";
-        String SOAP_ACTION = NAMESPACE+METHOD_NAME;
+    }public void GetJSON() {
+        HttpHandler sh = new HttpHandler();
+        String URL = "http://medicarehospital.pk/DoctorDetailHandler.ashx?DocId="+id;
+        jsonStr = sh.makeServiceCall(URL);
+        Log.d(TAG,URL+jsonStr);
         try {
-            SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
-            Request.addProperty("DocId",id);
-            SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-            soapEnvelope.dotNet = true;
-            soapEnvelope.setOutputSoapObject(Request);
-            HttpTransportSE transport = new HttpTransportSE(URL);
-            transport.call(SOAP_ACTION, soapEnvelope);
-            resultString= soapEnvelope.getResponse();
-
-            String jsonString="{\"specialities\":"+resultString.toString()+"}";
-            jsonResponse = new JSONObject(jsonString);
-            jsonMainNode = jsonResponse.optJSONArray("specialities");
+            JSONObject jsonObj = new JSONObject(jsonStr);
+            // Getting JSON Array node
+            JSONArray jsonMainNode = jsonObj.getJSONArray("DoctorDetail");
             JSONObject jsonChildNode = jsonMainNode.getJSONObject(0);
             Name = jsonChildNode.optString("Name");
             Degree = jsonChildNode.optString("Degree");

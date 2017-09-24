@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -70,16 +72,17 @@
             android:label="Consultant Details" />
         <activity
             android:name=".DoctorDetail"
-            android:label="Doctor Details"/>
+            android:label="Doctor Details" />
         <activity
             android:name=".Report"
-            android:label="Online Reports"/>
+            android:label="Online Reports" />
         <activity
             android:name=".ReportList"
-            android:label="Reports List"/>
+            android:label="Reports List" />
         <activity
             android:name=".ViewReport"
-            android:label="View Report"/>
+            android:label="View Report" />
+        <activity android:name=".PDFViewActivity"></activity>
     </application>
 
 </manifest>
