@@ -31,38 +31,54 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ViewReport extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = "Response";
     Button btn_generate;
     TextView TransitionNo,MRNo,PatientName,PatientGender,PatientAge,CollectionDate,Panel,PatientConsaltant,PatientDepartment, PatientLaboratoryNo;
-    TextView ReportName,TestDescription;
-    TextView Variable1,Variable2,Variable3,Variable4,Variable5,Variable6,Variable7,Variable8,Variable9,Variable10,Variable11,Variable12;
-    TextView Variable1Result,Variable2Result,Variable3Result,Variable4Result,Variable5Result,Variable6Result,Variable7Result,Variable8Result,Variable9Result,Variable10Result,Variable11Result,Variable12Result;
-    TextView Variable1Normal,Variable2Normal,Variable3Normal,Variable4Normal,Variable5Normal,Variable6Normal,Variable7Normal,Variable8Normal,Variable9Normal,Variable10Normal,Variable11Normal,Variable12Normal;
+    TextView ReportName,TestDescription,SystemDate;
+    TextView [] variable =new TextView[13];
+    TextView [] variableResult =new TextView[13];
+    TextView [] variableNormal =new TextView[13];
     LinearLayout ll_pdflayout;
     public static int REQUEST_PERMISSIONS = 1;
     boolean boolean_permission;
     boolean boolean_save;
     Bitmap bitmap;
-    ProgressDialog progressDialog;
+    ProgressDialog progressDialog,pd;
     String jsonStr;
+    String TestName,Report_Name;
+    int Test_TransNo,Test_PinNo,Report_ID;
+    JSONObject jsonObj,jsonChildNode;
+    JSONArray jsonMainNode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_report);
+
+        pd = new ProgressDialog(ViewReport.this);
+        pd.setMessage("loading");
+        pd.show();
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        TestName= bundle.getString("Report_Name");
+        Test_TransNo= bundle.getInt("Report_Trans");
+        Report_Name=TestName.replaceAll(" ","%20");
+        Report_ID=bundle.getInt("Report_ID");
+        Test_PinNo= bundle.getInt("Report_Pn");
+
         initVariables();
         AsyncCallReportPDF task = new AsyncCallReportPDF();
         task.execute();
         init();
         fn_permission();
         listener();
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        String reportID = bundle.getString("Report_ID");
-        //Toast.makeText(this, ""+reportID, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, ""+TestName+Test_TransNo+Test_PinNo, Toast.LENGTH_SHORT).show();
     }
     private void initVariables(){
         //Personal Information
@@ -80,45 +96,52 @@ public class ViewReport extends AppCompatActivity implements View.OnClickListene
         //Report Information
         ReportName= (TextView) findViewById(R.id.reportName);
         TestDescription= (TextView) findViewById(R.id.testDescription);
+        SystemDate= (TextView) findViewById(R.id.systemDate);
 
         //Variable Names
-        Variable1= (TextView) findViewById(R.id.variable1);
-        Variable2= (TextView) findViewById(R.id.variable2);
-        Variable3= (TextView) findViewById(R.id.variable3);
-        Variable4= (TextView) findViewById(R.id.variable4);
-        Variable5= (TextView) findViewById(R.id.variable5);
-        Variable6= (TextView) findViewById(R.id.variable6);
-        Variable7= (TextView) findViewById(R.id.variable7);
-        Variable8= (TextView) findViewById(R.id.variable8);
-        Variable9= (TextView) findViewById(R.id.variable9);
-        Variable10= (TextView) findViewById(R.id.variable10);
-        Variable11= (TextView) findViewById(R.id.variable11);
+        variable[0]= (TextView) findViewById(R.id.variable1);
+        variable[1]= (TextView) findViewById(R.id.variable2);
+        variable[2]= (TextView) findViewById(R.id.variable3);
+        variable[3]= (TextView) findViewById(R.id.variable4);
+        variable[4]= (TextView) findViewById(R.id.variable5);
+        variable[5]= (TextView) findViewById(R.id.variable6);
+        variable[6]= (TextView) findViewById(R.id.variable7);
+        variable[7]= (TextView) findViewById(R.id.variable8);
+        variable[8]= (TextView) findViewById(R.id.variable9);
+        variable[9]= (TextView) findViewById(R.id.variable10);
+        variable[10]= (TextView) findViewById(R.id.variable11);
+        variable[11]= (TextView) findViewById(R.id.variable12);
+        variable[12]= (TextView) findViewById(R.id.variable13);
 
         //variable Result
-        Variable1Result= (TextView) findViewById(R.id.variable1Result);
-        Variable2Result= (TextView) findViewById(R.id.variable2Result);
-        Variable3Result= (TextView) findViewById(R.id.variable3Result);
-        Variable4Result= (TextView) findViewById(R.id.variable4Result);
-        Variable5Result= (TextView) findViewById(R.id.variable5Result);
-        Variable6Result= (TextView) findViewById(R.id.variable6Result);
-        Variable7Result= (TextView) findViewById(R.id.variable7Result);
-        Variable8Result= (TextView) findViewById(R.id.variable8Result);
-        Variable9Result= (TextView) findViewById(R.id.variable9Result);
-        Variable10Result= (TextView) findViewById(R.id.variable10Result);
-        Variable11Result= (TextView) findViewById(R.id.variable11Result);
+        variableResult[0]= (TextView) findViewById(R.id.variable1Result);
+        variableResult[1]= (TextView) findViewById(R.id.variable2Result);
+        variableResult[2]= (TextView) findViewById(R.id.variable3Result);
+        variableResult[3]= (TextView) findViewById(R.id.variable4Result);
+        variableResult[4]= (TextView) findViewById(R.id.variable5Result);
+        variableResult[5]= (TextView) findViewById(R.id.variable6Result);
+        variableResult[6]= (TextView) findViewById(R.id.variable7Result);
+        variableResult[7]= (TextView) findViewById(R.id.variable8Result);
+        variableResult[8]= (TextView) findViewById(R.id.variable9Result);
+        variableResult[9]= (TextView) findViewById(R.id.variable10Result);
+        variableResult[10]= (TextView) findViewById(R.id.variable11Result);
+        variableResult[11]= (TextView) findViewById(R.id.variable12Result);
+        variableResult[12]= (TextView) findViewById(R.id.variable13Result);
 
         //variable Normal
-        Variable1Normal= (TextView) findViewById(R.id.variable1Normal);
-        Variable2Normal= (TextView) findViewById(R.id.variable2Normal);
-        Variable3Normal= (TextView) findViewById(R.id.variable3Normal);
-        Variable4Normal= (TextView) findViewById(R.id.variable4Normal);
-        Variable5Normal= (TextView) findViewById(R.id.variable5Normal);
-        Variable6Normal= (TextView) findViewById(R.id.variable6Normal);
-        Variable7Normal= (TextView) findViewById(R.id.variable7Normal);
-        Variable8Normal= (TextView) findViewById(R.id.variable8Normal);
-        Variable9Normal= (TextView) findViewById(R.id.variable9Normal);
-        Variable10Normal= (TextView) findViewById(R.id.variable10Normal);
-        Variable11Normal= (TextView) findViewById(R.id.variable11Normal);
+        variableNormal[0]= (TextView) findViewById(R.id.variable1Normal);
+        variableNormal[1]= (TextView) findViewById(R.id.variable2Normal);
+        variableNormal[2]= (TextView) findViewById(R.id.variable3Normal);
+        variableNormal[3]= (TextView) findViewById(R.id.variable4Normal);
+        variableNormal[4]= (TextView) findViewById(R.id.variable5Normal);
+        variableNormal[5]= (TextView) findViewById(R.id.variable6Normal);
+        variableNormal[6]= (TextView) findViewById(R.id.variable7Normal);
+        variableNormal[7]= (TextView) findViewById(R.id.variable8Normal);
+        variableNormal[8]= (TextView) findViewById(R.id.variable9Normal);
+        variableNormal[9]= (TextView) findViewById(R.id.variable10Normal);
+        variableNormal[10]= (TextView) findViewById(R.id.variable11Normal);
+        variableNormal[11]= (TextView) findViewById(R.id.variable12Normal);
+        variableNormal[12]= (TextView) findViewById(R.id.variable13Normal);
     }
     private class AsyncCallReportPDF extends AsyncTask<Void, Void, Void> {
         @Override
@@ -126,6 +149,7 @@ public class ViewReport extends AppCompatActivity implements View.OnClickListene
         @Override
         protected Void doInBackground(Void... params) { Log.i("Test", "doInBackground");
             GetJSON();
+            pd.dismiss();
             return null;
         }
         @Override
@@ -135,71 +159,58 @@ public class ViewReport extends AppCompatActivity implements View.OnClickListene
     }
     public void GetJSON() {
         HttpHandler sh = new HttpHandler();
-        String url = "http://medicarehospital.pk/Jsonfiles/OnlineReportJson.txt";
-        //jsonStr = sh.makeServiceCall(url);
-        String resultString="[{\"TransactionNo\":\"11\",\"MRNo\":\"0\",\"PatientName\":\"MRS. HAMEEDA\",\"Sex\":\"FEMALE\",\"Age\":\"50 Years\",\"CollectionDate\":\"20-APR-13\",\"Panel\":\"CASH PATIENT (MC)\",\"Consultant\":\"DENTAL OPD\",\"Department\":\"DENTAL DEPARTMENT\",\"LaboratoryNo\":\"Null\",\"ReportName\":\"HAEMATOLOGY\",\"TestDescription\":\"COMPLETE BLOOD PICTURE (CP)\",\"Variable1\":\"HAEMOGLOBIN\",\"Variable1Result\":\"13.0\",\"Variable1Normal\":\"Female : 11.1 - 14.5\",\"Variable2\":\"R.B.C. COUNT\",\"Variable2Result\":\"4.51\",\"Variable2Normal\":\"Female : 3.9 - 5.5\",\"Variable3\":\"HAEMATOCRIT(P.C.V.)\",\"Variable3Result\":\"40\",\"Variable3Normal\":\"Female : 35.4 - 42.0\",\"Variable4\":\"M.C.V.\",\"Variable4Result\":\"89\",\"Variable4Normal\":\"76.0 - 96.0\",\"Variable5\":\"M.C.H.\",\"Variable5Result\":\"29\",\"Variable5Normal\":\"26 - 32\",\"Variable6\":\"M.C.H.C.\",\"Variable6Result\":\"32\",\"Variable6Normal\":\"32 - 36\",\t\t\"Variable7\":\"WBC COUNT\",\"Variable7Result\":\"7,800\",\"Variable7Normal\":\"4.0 - 11.0\",\"Variable8\":\"NEUTROPHILS\",\"Variable8Result\":\"57\",\"Variable8Normal\":\"40 - 75\",\"Variable9\":\"LYMPHOCYTES\",\"Variable9Result\":\"38\",\"Variable9Normal\":\"20 - 45\",\"Variable10\":\"EOSINOPHILS\",\"Variable10Result\":\"03\",\"Variable10Normal\":\"1-6\",\t\"Variable11\":\"MONOCYTES\",\"Variable11Result\":\"02\",\"Variable11Normal\":\"2-8\",\"Variable12\":\"PLATELET COUNT\",\"Variable8Result\":\"158,000\",\"Variable8Normal\":\"150 - 450\"}]";
-        String jsonString="{\"ReportPDF\":"+resultString+"}";
+        String url = "http://local.jmc.edu.pk:1133/reporthandler.ashx?TransNo="+Test_TransNo+"&PinNo="+Test_PinNo+"&TestName="+Report_Name+"&TestId=0"+Report_ID;
+        jsonStr = sh.makeServiceCall(url);
         Log.d(TAG, url + jsonStr);
-        try {
-            JSONObject jsonObj = new JSONObject(jsonString);
-            // Getting JSON Array node
-            JSONArray jsonMainNode = jsonObj.getJSONArray("ReportPDF");
-            for (int i = 0; i < jsonMainNode.length(); i++) {
-                JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
 
-                TransitionNo.setText(jsonChildNode.optString("TransactionNo"));
-                MRNo.setText(jsonChildNode.optString("MRNo"));
-                PatientName.setText(jsonChildNode.optString("PatientName"));
-                PatientGender.setText(jsonChildNode.optString("Sex"));
-                PatientAge.setText(jsonChildNode.optString("Age"));
-                CollectionDate.setText(jsonChildNode.optString("CollectionDate"));
-                Panel.setText(jsonChildNode.optString("Panel"));
-                PatientConsaltant.setText(jsonChildNode.optString("Consultant"));
-                PatientDepartment.setText(jsonChildNode.optString("Department"));
-                PatientLaboratoryNo.setText(jsonChildNode.optString("LaboratoryNo"));
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String jsonString="{\"ReportPDF\":"+jsonStr+"}";
+                    jsonObj = new JSONObject(jsonString);
+                    // Getting JSON Array node
+                    jsonMainNode = jsonObj.getJSONArray("ReportPDF");
+                    jsonChildNode = jsonMainNode.getJSONObject(0);
 
-                ReportName.setText(jsonChildNode.optString("ReportName"));
-                TestDescription.setText(jsonChildNode.optString("TestDescription"));
+                    TransitionNo.setText(jsonChildNode.optString("LBIORESM_LTESTM_ID"));
+                    if (jsonChildNode.optString("MRNo").equals("")){
+                        MRNo.setText("0");
+                    }else{MRNo.setText(jsonChildNode.optString("MRNo"));  }
+                    PatientName.setText(jsonChildNode.optString("OPAT_NAME"));
+                    PatientGender.setText(jsonChildNode.optString("LTESTM_SEX"));
+                    PatientAge.setText(jsonChildNode.optString("YEAR"));
+                    CollectionDate.setText(jsonChildNode.optString("LTESTM_SER_DATE"));
+                    Panel.setText(jsonChildNode.optString("PANEL_DESC"));
+                    PatientConsaltant.setText(jsonChildNode.optString("CONSL_DESC"));
+                    PatientDepartment.setText(jsonChildNode.optString("MDEPT_DESC"));
+                    PatientLaboratoryNo.setText(jsonChildNode.optString("LABNO"));
 
-                Variable1.setText(jsonChildNode.optString("Variable1"));
-                Variable2.setText(jsonChildNode.optString("Variable2"));
-                Variable3.setText(jsonChildNode.optString("Variable3"));
-                Variable4.setText(jsonChildNode.optString("Variable4"));
-                Variable5.setText(jsonChildNode.optString("Variable5"));
-                Variable6.setText(jsonChildNode.optString("Variable6"));
-                Variable7.setText(jsonChildNode.optString("Variable7"));
-                Variable8.setText(jsonChildNode.optString("Variable8"));
-                Variable9.setText(jsonChildNode.optString("Variable9"));
-                Variable10.setText(jsonChildNode.optString("Variable10"));
-                Variable11.setText(jsonChildNode.optString("Variable11"));
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a");
+                    String format = simpleDateFormat.format(new Date());
+                    SystemDate.setText("Webserver "+format);
+                    ReportName.setText(TestName);
+                    TestDescription.setText(jsonChildNode.optString("TESTHEADING"));
 
-                Variable1Result.setText(jsonChildNode.optString("Variable1Result"));
-                Variable2Result.setText(jsonChildNode.optString("Variable2Result"));
-                Variable3Result.setText(jsonChildNode.optString("Variable3Result"));
-                Variable4Result.setText(jsonChildNode.optString("Variable4Result"));
-                Variable5Result.setText(jsonChildNode.optString("Variable5Result"));
-                Variable6Result.setText(jsonChildNode.optString("Variable6Result"));
-                Variable7Result.setText(jsonChildNode.optString("Variable7Result"));
-                Variable8Result.setText(jsonChildNode.optString("Variable8Result"));
-                Variable9Result.setText(jsonChildNode.optString("Variable9Result"));
-                Variable10Result.setText(jsonChildNode.optString("Variable10Result"));
-                Variable11Result.setText(jsonChildNode.optString("Variable11Result"));
+                    for (int i = 0; i < jsonMainNode.length(); i++) {
+                        JSONObject c = jsonMainNode.getJSONObject(i);
+                        String testNames = c.optString("LTEST_DESC");
+                        String testResults = c.optString("LBIORESD_LRESULT");
+                        String testNormals = c.optString("LTEST_RANGE1");
+                        Log.d("Testing",testNames+"&"+testResults+"&"+testNormals);
 
-                Variable1Normal.setText(jsonChildNode.optString("Variable1Normal"));
-                Variable2Normal.setText(jsonChildNode.optString("Variable2Normal"));
-                Variable3Normal.setText(jsonChildNode.optString("Variable3Normal"));
-                Variable4Normal.setText(jsonChildNode.optString("Variable4Normal"));
-                Variable5Normal.setText(jsonChildNode.optString("Variable5Normal"));
-                Variable6Normal.setText(jsonChildNode.optString("Variable6Normal"));
-                Variable7Normal.setText(jsonChildNode.optString("Variable7Normal"));
-                Variable8Normal.setText(jsonChildNode.optString("Variable8Normal"));
-                Variable9Normal.setText(jsonChildNode.optString("Variable9Normal"));
-                Variable10Normal.setText(jsonChildNode.optString("Variable10Normal"));
-                Variable11Normal.setText(jsonChildNode.optString("Variable11Normal"));
-            }
+                        variable[i].setVisibility(View.VISIBLE);
+                        variable[i].setText(testNames);
+                        variableResult[i].setVisibility(View.VISIBLE);
+                        variableResult[i].setText(testResults);
+                        variableNormal[i].setVisibility(View.VISIBLE);
+                        variableNormal[i].setText(testNormals);
+                    }
         } catch (Exception ex) {
             Log.e(TAG, "Error: " + ex.getMessage());
         }
+            }
+        });
     }
     private void init(){
         btn_generate = (Button)findViewById(R.id.btn_generate);

@@ -50,8 +50,8 @@
             android:layout_height="50dp"
             android:text="Get Report"
             android:layout_marginTop="10dp"
-            android:textColor="#fff"
             android:id="@+id/getReportBtn"
+            android:textColor="#fff"
             android:background="@color/colorPrimaryDark"/>
     </LinearLayout>
 </ScrollView>

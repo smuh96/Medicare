@@ -10,13 +10,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
-    android:text="Generate PDF" />
+    android:text="Generate PDF"
+    android:textColor="#fff"
+    android:layout_margin="10dp"
+    android:background="@color/colorPrimaryDark" />
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_above="@+id/btn_generate">
     <LinearLayout
         android:id="@+id/ll_pdflayout"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffffff"
@@ -29,6 +36,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:padding="10dp"
                 android:src="@drawable/smstlogo"/>
             <LinearLayout
                 android:layout_width="0dp"
@@ -70,7 +78,7 @@
                 android:layout_weight="1"
                 android:layout_height="60dp"
                 android:src="@drawable/medilogo"
-                android:paddingRight="5dp" />
+                android:padding="10dp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,7 +116,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="1"
+                        android:text=""
                         android:id="@+id/transtionNo"
                         android:textColor="#000"
                         android:textSize="6sp"/>
@@ -130,7 +138,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="0"
+                        android:text=""
                         android:id="@+id/mrNo"
                         android:textColor="#000"
                         android:textSize="6sp"/>
@@ -178,7 +186,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="MALE"
+                        android:text=""
                         android:id="@+id/gender"
                         android:textColor="#000"
                         android:textSize="6sp"/>
@@ -200,7 +208,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="45 Years"
+                        android:text=""
                         android:id="@+id/patientAge"
                         android:textColor="#000"
                         android:textSize="6sp"/>
@@ -234,7 +242,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="01-SEP-12"
+                        android:text=""
                         android:id="@+id/collectionDate"
                         android:textColor="#000"
                         android:textSize="6sp"/>
@@ -256,7 +264,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="CASH PATIENT"
+                        android:text=""
                         android:id="@+id/panel"
                         android:textColor="#000"
                         android:textSize="6sp"/>
@@ -281,7 +289,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="OSAMA ALI (DR) "
+                        android:text=""
                         android:id="@+id/consaltant"
                         android:textColor="#000"
                         android:textSize="6sp" />
@@ -304,7 +312,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="EMERGENCY"
+                        android:text=""
                         android:id="@+id/department"
                         android:textColor="#000"
                         android:textSize="6sp"/>
@@ -326,7 +334,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="36"
+                        android:text=""
                         android:id="@+id/laboratoryNo"
                         android:textColor="#000"
                         android:textSize="6sp"/>
@@ -336,7 +344,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="URINE EXAMINATION"
+            android:text=""
             android:id="@+id/reportName"
             android:textColor="#000"
             android:textAlignment="center"
@@ -367,8 +375,7 @@
                     android:textSize="5sp"
                     android:textColor="#000"
                     android:padding="3dp"
-                    android:text="MBBS M.Phil, FCPS Professor &amp; HOD Pathalogy Consultant Haematologist
-"/>
+                    android:text="MBBS M.Phil, FCPS Professor &amp; HOD Pathalogy Consultant Haematologist"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -383,8 +390,7 @@
                     android:textSize="5sp"
                     android:textColor="#000"
                     android:padding="3dp"
-                    android:text="MBBS , FCPS Chemical Pathalogy
-"/>
+                    android:text="MBBS , FCPS Chemical Pathalogy"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -399,8 +405,7 @@
                     android:textSize="5sp"
                     android:textColor="#000"
                     android:padding="3dp"
-                    android:text="MBBS , FCPS Assistant Professor Consultant Clinical Microbiologist
-"/>
+                    android:text="MBBS , FCPS Assistant Professor Consultant Clinical Microbiologist"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -453,7 +458,7 @@
                         android:padding="2dp"
                         android:textSize="8sp"
                         android:textColor="#000"
-                        android:text="URINE DETAILED REPORT "
+                        android:text=""
                         android:id="@+id/testDescription"/>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -469,7 +474,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="COLOUR"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable1"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -477,7 +483,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="PH"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable2"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -485,7 +492,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="SPECIFIC GRAVITY"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable3"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -493,7 +501,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="PROTEIN"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable4"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -501,7 +510,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="GLUCOSE"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable5"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -509,7 +519,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="KETONES"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable6"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -517,7 +528,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="BILIRUBIN"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable7"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -525,7 +537,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="UROBILINOGEN"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable8"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -533,7 +546,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="RED CELLS"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable9"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -541,7 +555,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="LEUCOCYTES "
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable10"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -549,8 +564,27 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="EPITHELIAL CELLS"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable11"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:visibility="gone"
+                                android:id="@+id/variable12"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:visibility="gone"
+                                android:id="@+id/variable13"
                                 android:textSize="7sp"
                                 android:padding="2dp"
                                 android:textColor="#000"/>
@@ -564,7 +598,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="YELLOW"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable1Result"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -572,7 +607,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="5.0"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable2Result"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -580,7 +616,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="1.020"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable3Result"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -588,7 +625,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="NIL "
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable4Result"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -596,7 +634,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="NIL"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable5Result"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -604,7 +643,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="NIL "
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable6Result"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -612,7 +652,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="NEGATIVE "
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable7Result"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -620,7 +661,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="NORMAL "
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable8Result"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -628,7 +670,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="NIL"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable9Result"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -636,7 +679,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="1 - 2"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable10Result"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -644,8 +688,27 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="(+)"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable11Result"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:visibility="gone"
+                                android:id="@+id/variable12Result"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:visibility="gone"
+                                android:id="@+id/variable13Result"
                                 android:textSize="7sp"
                                 android:padding="2dp"
                                 android:textColor="#000"/>
@@ -659,7 +722,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="STRAW - YELLOW "
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable1Normal"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -667,7 +731,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="5 - 8"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable2Normal"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -675,7 +740,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="1.005 - 1.030 "
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable3Normal"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -683,7 +749,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="mg % "
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable4Normal"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -691,7 +758,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="NIL "
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable5Normal"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -699,7 +767,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="NIL "
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable6Normal"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -707,7 +776,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="NEGATIVE "
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable7Normal"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -715,7 +785,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text=" "
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable8Normal"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -723,7 +794,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="0 - 1"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable9Normal"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -731,7 +803,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="0 - 5"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable10Normal"
                                 android:textSize="7sp"
                                 android:padding="2dp"
@@ -739,8 +812,27 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="0 - 2"
+                                android:text=""
+                                android:visibility="gone"
                                 android:id="@+id/variable11Normal"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:visibility="gone"
+                                android:id="@+id/variable12Normal"
+                                android:textSize="7sp"
+                                android:padding="2dp"
+                                android:textColor="#000"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:visibility="gone"
+                                android:id="@+id/variable13Normal"
                                 android:textSize="7sp"
                                 android:padding="2dp"
                                 android:textColor="#000"/>
@@ -751,8 +843,55 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="250dp">
 
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Report has been generated by computer and does not require signature."
+                android:textColor="#000"
+                android:layout_marginBottom="2dp"
+                android:textSize="8sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="5dp"
+                android:background="#000"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/systemDate"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="8sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Page 1 of 1"
+                    android:textColor="#000"
+                    android:layout_alignParentRight="true"
+                    android:textSize="8sp"/>
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Developed by S.M.S.T I.T department"
+                android:textColor="#000"
+                android:layout_marginBottom="2dp"
+                android:textSize="8sp"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

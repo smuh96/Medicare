@@ -74,9 +74,14 @@ public class ReportList extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             Log.i(TAG, "onPostExecute");
             simpleAdapter = new SimpleAdapter(getBaseContext(), reportsNameList,R.layout.single_list_row, new String[] {"reportNamess"}, new int[] {android.R.id.text1});
-            listView.setAdapter(simpleAdapter);
+            if (reportsNameList.isEmpty()){
+                listView.setVisibility(View.GONE);
+                noInternet.setVisibility(View.VISIBLE);
+            }else{
+                listView.setAdapter(simpleAdapter);
+                listView.setEmptyView(findViewById(R.id.no_data));
+            }
             pd.dismiss();
-            listView.setEmptyView(findViewById(R.id.no_data));
             ListViewClick();
         }
     }
@@ -131,9 +136,13 @@ public class ReportList extends AppCompatActivity {
                     JSONArray reportsName = jsonObj.getJSONArray("reportsName");
                     // looping through All reportsName
                         JSONObject c = reportsName.getJSONObject(position);
-                        String reportId = c.getString("LTEST_ID");
-                    Intent intent = new Intent(ReportList.this, OnlineReport.class);
-                    intent.putExtra("Report_ID", reportId);
+                        String reportName = c.getString("LTEST_DESC");
+                        int reportID = c.getInt("LTEST_ID");
+                    Intent intent = new Intent(ReportList.this, ViewReport.class);
+                    intent.putExtra("Report_Name", reportName);
+                    intent.putExtra("Report_ID", reportID);
+                    intent.putExtra("Report_Trans", TransNo);
+                    intent.putExtra("Report_Pn", PinNo);
                     startActivity(intent);
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());

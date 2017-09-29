@@ -50,7 +50,7 @@ public class PDFViewActivity extends AppCompatActivity implements OnPageChangeLi
     @Override
     public void onPageChanged(int page, int pageCount) {
         pageNumber = page;
-        setTitle(String.format("%s %s / %s", pdfFileName, page + 1, pageCount));
+        setTitle(String.format("%s %s / %s", "View PDF", page + 1, pageCount));
     }
     @Override
     public void loadComplete(int nbPages) {
