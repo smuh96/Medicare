@@ -137,15 +137,20 @@ public class SpecialityDetails extends AppCompatActivity {
             Log.d(TAG, "URL: " + url);
             name = jsonChildNode.optString("Name");
             heading1 = jsonChildNode.optString("Head1");
-            paragraph1 = jsonChildNode.optString("Headpara1");
+            String para1 = jsonChildNode.optString("Headpara1");
+            paragraph1 = para1.replaceAll("\r\n","\r\n\u25CF   ");
             heading2 = jsonChildNode.optString("Head2");
-            paragraph2 = jsonChildNode.optString("Headpara2");
+            String para2 = jsonChildNode.optString("Headpara2");
+            paragraph2 = para2.replaceAll("\r\n","\r\n\u25CF   ");
             heading3 = jsonChildNode.optString("Head3");
-            paragraph3 = jsonChildNode.optString("Headpara3");
+            String para3 = jsonChildNode.optString("Headpara3");
+            paragraph3 = para3.replaceAll("\r\n","\r\n\u25CF   ");
             heading4 = jsonChildNode.optString("Head4");
-            paragraph4 = jsonChildNode.optString("Headpara4");
+            String para4 = jsonChildNode.optString("Headpara4");
+            paragraph4 = para4.replaceAll("\r\n","\r\n\u25CF   ");
             heading5 = jsonChildNode.optString("Head5");
-            paragraph5 = jsonChildNode.optString("Headpara5");
+            String para5 = jsonChildNode.optString("Headpara5");
+            paragraph5 = para5.replaceAll("\r\n","\r\n\u25CF   ");
 
         } catch (Exception ex) {
             Log.e(TAG, "Error: " + ex.getMessage());

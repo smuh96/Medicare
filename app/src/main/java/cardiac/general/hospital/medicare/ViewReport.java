@@ -45,7 +45,7 @@ public class ViewReport extends AppCompatActivity implements View.OnClickListene
     TextView [] variableNormal =new TextView[13];
     LinearLayout ll_pdflayout;
     public static int REQUEST_PERMISSIONS = 1;
-    boolean boolean_permission;
+    boolean boolean_permission=true;
     boolean boolean_save;
     Bitmap bitmap;
     ProgressDialog progressDialog,pd;
@@ -224,6 +224,7 @@ public class ViewReport extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
 
+        fn_permission();
         switch (view.getId()) {
             case R.id.btn_generate:
 
@@ -288,7 +289,7 @@ public class ViewReport extends AppCompatActivity implements View.OnClickListene
             boolean_save=true;
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(this, "Something wrong: " + e.toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Something wrong due to Permission denied, Please reinstall application " /*+ e.toString()*/, Toast.LENGTH_LONG).show();
         }
 
         // close the document
