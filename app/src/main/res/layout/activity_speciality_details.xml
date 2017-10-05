@@ -27,6 +27,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/intro_text"
+            android:padding="5dp"
+            android:textSize="15sp"
+            android:layout_gravity="center_vertical"
+            android:textColor="#000"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/head1"
             android:textSize="20sp"
             android:padding="5dp"

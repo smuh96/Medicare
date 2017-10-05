@@ -10,23 +10,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
-
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Objects;
 
 public class SpecialityDetails extends AppCompatActivity {
 
@@ -34,8 +24,8 @@ public class SpecialityDetails extends AppCompatActivity {
     ImageView cover;
     String url;
     String id;
-    TextView specialityName;
-    String name;
+    TextView specialityName,intro;
+    String name,introduction;
     TextView Heading1,Heading2,Heading3,Heading4,Heading5;
     TextView Paragraph1,Paragraph2,Paragraph3,Paragraph4,Paragraph5;
     String heading1,heading2,heading3,heading4,heading5;
@@ -52,6 +42,7 @@ public class SpecialityDetails extends AppCompatActivity {
         pd.show();
         cover = (ImageView) findViewById(R.id.coverPic);
         specialityName= (TextView) findViewById(R.id.specialityname);
+        intro= (TextView) findViewById(R.id.intro_text);
         Heading1= (TextView) findViewById(R.id.head1);
         Heading2= (TextView) findViewById(R.id.head2);
         Heading3= (TextView) findViewById(R.id.head3);
@@ -114,6 +105,7 @@ public class SpecialityDetails extends AppCompatActivity {
             super.onPostExecute(result);
             cover.setImageBitmap(result);
             specialityName.setText(name);
+            intro.setText(introduction);
             setHeadPara1();
             setHeadPara2();
             setHeadPara3();
@@ -136,7 +128,18 @@ public class SpecialityDetails extends AppCompatActivity {
             url = pic.replaceAll("~", "http://medicarehospital.pk/");
             Log.d(TAG, "URL: " + url);
             name = jsonChildNode.optString("Name");
+            introduction = jsonChildNode.optString("Intro");
             heading1 = jsonChildNode.optString("Head1");
+            paragraph1 = jsonChildNode.optString("Headpara1");
+            heading2 = jsonChildNode.optString("Head2");
+            paragraph2 = jsonChildNode.optString("Headpara2");
+            heading3 = jsonChildNode.optString("Head3");
+            paragraph3 = jsonChildNode.optString("Headpara3");
+            heading4 = jsonChildNode.optString("Head4");
+            paragraph4 = jsonChildNode.optString("Headpara4");
+            heading5 = jsonChildNode.optString("Head5");
+            paragraph5 = jsonChildNode.optString("Headpara5");
+            /*heading1 = jsonChildNode.optString("Head1");
             String para1 = jsonChildNode.optString("Headpara1");
             paragraph1 = para1.replaceAll("\r\n","\r\n\u25CF   ");
             heading2 = jsonChildNode.optString("Head2");
@@ -150,7 +153,7 @@ public class SpecialityDetails extends AppCompatActivity {
             paragraph4 = para4.replaceAll("\r\n","\r\n\u25CF   ");
             heading5 = jsonChildNode.optString("Head5");
             String para5 = jsonChildNode.optString("Headpara5");
-            paragraph5 = para5.replaceAll("\r\n","\r\n\u25CF   ");
+            paragraph5 = para5.replaceAll("\r\n","\r\n\u25CF   ");*/
 
         } catch (Exception ex) {
             Log.e(TAG, "Error: " + ex.getMessage());

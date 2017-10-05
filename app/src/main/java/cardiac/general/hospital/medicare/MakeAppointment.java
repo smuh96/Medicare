@@ -261,7 +261,7 @@ public class MakeAppointment extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) { Log.i(TAG, "doInBackground");
 
-            SetAppointmentDetail(NameText, MRnoText, AgeText, AgeText,EmailText, SpecID ,ConsID, HistoryText, Date1Text,Time1Text,Date2Text,Time2Text);
+            SetAppointmentDetail(NameText, MRnoText, AgeText, ContactText,EmailText, SpecID ,ConsID, HistoryText, Date1Text,Time1Text,Date2Text,Time2Text);
             return null;
         }
         @Override
